@@ -15,6 +15,16 @@ The goal of this project is to create an easier way to make Mandelbrot Images an
 You can find a lot of examples of this software on <a href="https://www.instagram.com/mandelbrowser_set/">Instagram</a> and on <a href="https://www.youtube.com/watch?v=qgvzcOcer_U">Youtube</a>. Here are some examples of images generated with Mandelbrowser Set
 
 
+ ### Mini Mandelbrot <br>
+<img width="600" src="https://github.com/JorgeBaes/Mandelbrowser-Set/blob/main/images/example_image2.png"></img> <br>
+ ### Hurricane <br>
+<img width="600" src="https://github.com/JorgeBaes/Mandelbrowser-Set/blob/main/images/example_gif1.gif"></img> <br>
+ ### Crossguard <br>
+<img width="600" src="https://github.com/JorgeBaes/Mandelbrowser-Set/blob/main/images/example_gif2.gif"></img> <br>
+ ### Spiral <br>
+<img width="600" src="https://github.com/JorgeBaes/Mandelbrowser-Set/blob/main/images/tool_search_image.png"></img> <br>
+
+
 # Installation 
 This software only uses the browser's tecnologies (HTML, CSS and JS). So it is not needed to download or install anything for the Mandelbrowser to work, but you must have any browser installed (Chrome, Opera, Microsoft Edge ...)
 To download the Mandelbrowser Set click <a href="https://github.com/JorgeBaes/Mandelbrowser/archive/main.zip">here</a>. If it does not work click on the green button 'code' on the top right corner and then click on 'Download Zip'. After downloading this repository, unzip it and the Installation process is over ;) 
