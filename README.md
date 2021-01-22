@@ -14,6 +14,7 @@ The goal of this project is to create an easier way to make Mandelbrot Images an
 # Examples 
 You can find a lot of examples of this software on <a href="https://www.instagram.com/mandelbrowser_set/">Instagram</a> and on <a href="https://www.youtube.com/watch?v=qgvzcOcer_U">Youtube</a>. Here are some examples of images generated with Mandelbrowser Set
 
+<img src="https://github.com/JorgeBaes/Mandelbrowser-Set/blob/main/images/example_gif1.gif"></img>
 
 # Installation 
 This software only uses the browser's tecnologies (HTML, CSS and JS). So it is not needed to download or install anything for the Mandelbrowser to work, but you must have any browser installed (Chrome, Opera, Microsoft Edge ...)
