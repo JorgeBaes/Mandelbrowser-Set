@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mandelbrowser Set</title>
+    <link rel="shortcut icon" href="./icons/icon.png">
+    <style>
+        .disable-select {
+            user-select:none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .enable-select {
+            user-select:text;
+            -webkit-user-select: text;
+            -khtml-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+        body{
+            font-size: large;
+            font-family: Verdana;
+            background-image: url('./icons/mandelbrot_image.jpg');
+            color: white;
+        }
+        
+        .flex{
+            display: flex;
+            align-items: center;
+        }
+        .flex > div{
+            width: 25vW;
+            padding: 1vw 4vw 4vw 4vw;
+            text-align: center;
+            margin: 3vw;
+            background-color: rgba(0, 0, 0, 0.315);
+            transition: 700ms;
+        }
+        
+        .flex > div:hover{
+            transform: scale(1.01);
+            background-color: rgba(255, 255, 255, 0.459);
+            box-shadow: 0px 0px 10px black;
+        }
+        .flex > div > p{
+            display: block;
+            text-align: center;
+            font: normal x-larger Monospace;
+            background: rgb(0, 0, 0);
+            color: azure;
+            padding: 10px;
+            border-radius: 30px;
+            transition: background 0.5s 0.1s ease-in, transform 0.2s 0.1s ease-in-out, box-shadow 2s, color 0.5s 0.1s ease-in;
+        }
+
+        .flex > div:hover > p,img{
+        background: rgb(255, 253, 119);
+        color: rgb(0, 0, 0);
+        transform: scale(1.05); 
+        box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);  
+
+        }
+
+        img{
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        background: rgb(252, 250, 133);
+        padding:15px;
+        border-radius: 12px;
+        transition: background 2s 0s ease-in-out, box-shadow 0.8s 0.1s ease-in-out, border-radius 0.5s 0.2s ease-in-out;
+        animation: jump 0.3s ease;    
+
+        }
+        img:hover{
+        background: rgb(0, 0, 0);
+        box-shadow: 0px 0px 20px 5px rgb(229, 255, 0);    
+        border-radius: 40px;
+        animation: rotation 1s ease 0.1s; 
+        }
+        .button_svg{
+            width: fit-content;
+            background-color: rgba(214, 200, 247, 0.562);
+            border-radius: 30px;
+            padding: 10px 20px 5px 20px;
+            box-shadow: 0px 0px 10px black;
+            margin: auto;
+            cursor: pointer;
+            transition: 1s;
+        }
+        svg{
+            transition: 1s;
+        }
+        .button_svg:hover{
+            background-color: rgba(0, 0, 0, 0.562);
+            box-shadow: 0px 0px 20px rgb(255, 255, 255);
+        }
+        .button_svg:hover > svg{
+            animation:jump_2 1s;
+            fill: white;
+        }
+        .animate_SVG{            
+            animation: jump_1 1s;
+        }
+        .animate_SVG:hover{
+            animation: jump_2 0.3s;
+        }
+        @keyframes rotation {
+        0% { transform: scale(1.05) translate3d(0px, 0px, 0px); }
+        30%  { transform: scale(1.05) translate3d(0px, -1px, 0px); } 
+        80%   { transform: scale(1.05) translate3d(0px, 1px, 0px); }
+        100%{ transform: scale(1.05) translate3d(0px, 0px, 0px); }
+        }
+        @keyframes jump {
+            0% { transform:  scale(1.05) translate3d(0px, 0px, 0px); }
+        30%  { transform: scale(1.05) translate3d(0px, -1px, 0px); } 
+        80%   { transform: scale(1.05)translate3d(0px, 1px, 0px); }
+        100%{ transform: scale(1.05)translate3d(0px, 0px, 0px); }
+        }
+        @keyframes jump_1 {
+        0% { transform: translate3d(0px, 0px, 0px); }
+        30%  { transform: translate3d(0px, -1px, 0px); } 
+        80%   { transform: translate3d(0px, 1px, 0px); }
+        100%{ transform: translate3d(0px, 0px, 0px); }
+        }
+        @keyframes jump_2 {
+            0% { transform:  translate3d(0px, 0px, 0px); }
+        30%  { transform: translate3d(0px, -1px, 0px); } 
+        80%   { transform:translate3d(0px, 1px, 0px); }
+        100%{ transform:translate3d(0px, 0px, 0px); }
+        }
+
+
+        .pointer{
+            cursor: pointer;
+        }
+        .title{
+            font-size: 70px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(11, 32, 104);
+            text-shadow: 0px 0px 5px rgb(255, 255, 255);
+        }
+        .subtitle{
+            font-size: 25px;
+            font-family: monospace;
+            color: crimson;
+            text-shadow: 0px 0px 5px rgb(255, 255, 255);
+        }
+        .title_div{
+            text-align: center;
+            width: fit-content;
+            padding: 20px 40px;
+            border-radius: 20px;
+            margin: auto;         
+            background-color: rgba(255, 255, 255, 0.753);
+            transition: 2s 0.2s ease;         
+        }
+        .title_div:hover{
+            transform: scale(1.1);   
+            background-color: rgba(255, 255, 255, 0.452);
+            transition: 6s 0s ease-in-out;      
+        }
+        .text_div{
+            width: 80vw;
+            margin: auto;
+            text-align: justify;
+            padding: 20px 40px;
+            background-color: rgba(255, 255, 255, 0.63);
+        }
+        .text{
+            color: rgb(0, 1, 77);
+            text-shadow: 0px 0px 5px white;
+        }
+        .gif{
+            width: 20vw;
+        }
+        .gif_img{
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        background: unset;
+        padding:0px;
+        border-radius: 0px;
+        margin: auto;
+        }
+        .gif_img:hover{
+        box-shadow: 0px 0px 0px 0px rgb(229, 255, 0);    
+        border-radius: 0px;
+        }
+    </style>
+
+</head>
+<body style="text-align: center;" class="disable-select"> 
+    <div class="title_div">
+        <span class="title">
+            Mandelbrowser Set
+        </span>
+        <br>
+        <span class="subtitle">
+            A Mandelbrot Set Software by Jorge Baes
+        </span>
+    </div>
+    <br>
+    <div title="Go to Tools" class="button_svg" onclick="scroll_down()">
+    <svg class="animate_SVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="62px" height="62px">
+        <g>
+            <g>
+                <path d="M310,190c-5.52,0-10,4.48-10,10s4.48,10,10,10c5.52,0,10-4.48,10-10S315.52,190,310,190z"/>
+            </g>
+        </g>
+        <g>
+            <g>
+                <path d="M500.281,443.719l-133.48-133.48C388.546,277.485,400,239.555,400,200C400,89.72,310.28,0,200,0S0,89.72,0,200    s89.72,200,200,200c39.556,0,77.486-11.455,110.239-33.198l36.895,36.895c0.005,0.005,0.01,0.01,0.016,0.016l96.568,96.568    C451.276,507.838,461.319,512,472,512c10.681,0,20.724-4.162,28.278-11.716C507.837,492.731,512,482.687,512,472    S507.837,451.269,500.281,443.719z M305.536,345.727c0,0.001-0.001,0.001-0.002,0.002C274.667,368.149,238.175,380,200,380    c-99.252,0-180-80.748-180-180S100.748,20,200,20s180,80.748,180,180c0,38.175-11.851,74.667-34.272,105.535    C334.511,320.988,320.989,334.511,305.536,345.727z M326.516,354.793c10.35-8.467,19.811-17.928,28.277-28.277l28.371,28.371    c-8.628,10.183-18.094,19.65-28.277,28.277L326.516,354.793z M486.139,486.139c-3.78,3.78-8.801,5.861-14.139,5.861    s-10.359-2.081-14.139-5.861l-88.795-88.795c10.127-8.691,19.587-18.15,28.277-28.277l88.798,88.798    C489.919,461.639,492,466.658,492,472C492,477.342,489.919,482.361,486.139,486.139z"/>
+            </g>
+        </g>
+        <g>
+            <g>
+                <path d="M200,40c-88.225,0-160,71.775-160,160s71.775,160,160,160s160-71.775,160-160S288.225,40,200,40z M200,340    c-77.196,0-140-62.804-140-140S122.804,60,200,60s140,62.804,140,140S277.196,340,200,340z"/>
+            </g>
+        </g>
+        <g>
+            <g>
+                <path d="M312.065,157.073c-8.611-22.412-23.604-41.574-43.36-55.413C248.479,87.49,224.721,80,200,80c-5.522,0-10,4.478-10,10    c0,5.522,4.478,10,10,10c41.099,0,78.631,25.818,93.396,64.247c1.528,3.976,5.317,6.416,9.337,6.416    c1.192,0,2.405-0.215,3.584-0.668C311.472,168.014,314.046,162.229,312.065,157.073z"/>
+            </g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+    </svg>           
+    <svg class="animate_SVG" style="margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512" height="62px" viewBox="0 0 512 512" width="62px"><path d="m272.066 512h-32.133c-25.989 0-47.134-21.144-47.134-47.133v-10.871c-11.049-3.53-21.784-7.986-32.097-13.323l-7.704 7.704c-18.659 18.682-48.548 18.134-66.665-.007l-22.711-22.71c-18.149-18.129-18.671-48.008.006-66.665l7.698-7.698c-5.337-10.313-9.792-21.046-13.323-32.097h-10.87c-25.988 0-47.133-21.144-47.133-47.133v-32.134c0-25.989 21.145-47.133 47.134-47.133h10.87c3.531-11.05 7.986-21.784 13.323-32.097l-7.704-7.703c-18.666-18.646-18.151-48.528.006-66.665l22.713-22.712c18.159-18.184 48.041-18.638 66.664.006l7.697 7.697c10.313-5.336 21.048-9.792 32.097-13.323v-10.87c0-25.989 21.144-47.133 47.134-47.133h32.133c25.989 0 47.133 21.144 47.133 47.133v10.871c11.049 3.53 21.784 7.986 32.097 13.323l7.704-7.704c18.659-18.682 48.548-18.134 66.665.007l22.711 22.71c18.149 18.129 18.671 48.008-.006 66.665l-7.698 7.698c5.337 10.313 9.792 21.046 13.323 32.097h10.87c25.989 0 47.134 21.144 47.134 47.133v32.134c0 25.989-21.145 47.133-47.134 47.133h-10.87c-3.531 11.05-7.986 21.784-13.323 32.097l7.704 7.704c18.666 18.646 18.151 48.528-.006 66.665l-22.713 22.712c-18.159 18.184-48.041 18.638-66.664-.006l-7.697-7.697c-10.313 5.336-21.048 9.792-32.097 13.323v10.871c0 25.987-21.144 47.131-47.134 47.131zm-106.349-102.83c14.327 8.473 29.747 14.874 45.831 19.025 6.624 1.709 11.252 7.683 11.252 14.524v22.148c0 9.447 7.687 17.133 17.134 17.133h32.133c9.447 0 17.134-7.686 17.134-17.133v-22.148c0-6.841 4.628-12.815 11.252-14.524 16.084-4.151 31.504-10.552 45.831-19.025 5.895-3.486 13.4-2.538 18.243 2.305l15.688 15.689c6.764 6.772 17.626 6.615 24.224.007l22.727-22.726c6.582-6.574 6.802-17.438.006-24.225l-15.695-15.695c-4.842-4.842-5.79-12.348-2.305-18.242 8.473-14.326 14.873-29.746 19.024-45.831 1.71-6.624 7.684-11.251 14.524-11.251h22.147c9.447 0 17.134-7.686 17.134-17.133v-32.134c0-9.447-7.687-17.133-17.134-17.133h-22.147c-6.841 0-12.814-4.628-14.524-11.251-4.151-16.085-10.552-31.505-19.024-45.831-3.485-5.894-2.537-13.4 2.305-18.242l15.689-15.689c6.782-6.774 6.605-17.634.006-24.225l-22.725-22.725c-6.587-6.596-17.451-6.789-24.225-.006l-15.694 15.695c-4.842 4.843-12.35 5.791-18.243 2.305-14.327-8.473-29.747-14.874-45.831-19.025-6.624-1.709-11.252-7.683-11.252-14.524v-22.15c0-9.447-7.687-17.133-17.134-17.133h-32.133c-9.447 0-17.134 7.686-17.134 17.133v22.148c0 6.841-4.628 12.815-11.252 14.524-16.084 4.151-31.504 10.552-45.831 19.025-5.896 3.485-13.401 2.537-18.243-2.305l-15.688-15.689c-6.764-6.772-17.627-6.615-24.224-.007l-22.727 22.726c-6.582 6.574-6.802 17.437-.006 24.225l15.695 15.695c4.842 4.842 5.79 12.348 2.305 18.242-8.473 14.326-14.873 29.746-19.024 45.831-1.71 6.624-7.684 11.251-14.524 11.251h-22.148c-9.447.001-17.134 7.687-17.134 17.134v32.134c0 9.447 7.687 17.133 17.134 17.133h22.147c6.841 0 12.814 4.628 14.524 11.251 4.151 16.085 10.552 31.505 19.024 45.831 3.485 5.894 2.537 13.4-2.305 18.242l-15.689 15.689c-6.782 6.774-6.605 17.634-.006 24.225l22.725 22.725c6.587 6.596 17.451 6.789 24.225.006l15.694-15.695c3.568-3.567 10.991-6.594 18.244-2.304z"/><path d="m256 367.4c-61.427 0-111.4-49.974-111.4-111.4s49.973-111.4 111.4-111.4 111.4 49.974 111.4 111.4-49.973 111.4-111.4 111.4zm0-192.8c-44.885 0-81.4 36.516-81.4 81.4s36.516 81.4 81.4 81.4 81.4-36.516 81.4-81.4-36.515-81.4-81.4-81.4z"/></svg>
+    <svg class="animate_SVG" xmlns="http://www.w3.org/2000/svg" height="62px" viewBox="0 0 512 512" width="62px"><path d="m475.082031 205.300781c-5.609375-24.34375-15.101562-47.269531-28.316406-68.378906l19.03125-31.742187-58.976563-58.976563-31.742187 19.03125c-21.109375-13.214844-44.035156-22.707031-68.378906-28.316406l-8.980469-36.917969h-83.4375l-8.980469 36.917969c-24.34375 5.609375-47.269531 15.101562-68.378906 28.316406l-31.742187-19.03125-58.976563 58.976563 19.03125 31.742187c-13.214844 21.109375-22.707031 44.035156-28.316406 68.378906l-36.917969 8.980469v83.4375l36.917969 8.980469c5.609375 24.34375 15.101562 47.269531 28.316406 68.378906l-19.03125 31.742187 58.976563 58.976563 31.742187-19.03125c21.109375 13.214844 44.035156 22.707031 68.378906 28.316406l8.980469 36.917969h83.4375l8.980469-36.917969c24.34375-5.609375 47.269531-15.101562 68.378906-28.316406l31.742187 19.03125 58.976563-58.976563-19.03125-31.742187c13.214844-21.109375 22.707031-44.035156 28.316406-68.378906l36.917969-8.980469v-83.4375zm-219.082031 215.699219c-90.980469 0-165-74.019531-165-165s74.019531-165 165-165 165 74.019531 165 165-74.019531 165-165 165zm0 0"/><path d="m271 121.921875-117.816406 179.078125h87.816406v89.078125l117.816406-179.078125h-87.816406zm0 0"/></svg>
+    </div>
+    <br>
+    <br>
+    <div class="text_div enable-select">
+        <span class="text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mandelbrowser Set is a JS Mandelbrot set software 
+            in which you can explore the fractal and make some great images.
+            It is also possible to put all the images together
+            to make a fractal zoom video. This software gives you a range
+            of configurations to make the images your way. 
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first thing to do is search for beautiful and interesting 
+            views inside the Mandelbrot set. To do that task the Mandelbrot Search 
+            tab ofers an interative fractal explorer. By clicking at the fractal it will
+            be zoomed in and you will see how fascinating is the Mandelbrot Set.
+            You can also add the views you like to a point list and save it to future
+            usage.
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After you get the point list you can then
+            go to the Settings tab. There you will configure the images name, quality,
+            decorations and other things. When everything is finally set, you can 
+            see a preview of the zoom or the image that will be generated. When you feel the image generating process
+            is ready to go, you can finally click on GENERATE MANDELBROT and 'voila' you will be 
+            taken to a new tab where the images will be generated! 
+        </span>        
+    </div>
+    <br>
+    <div class="text_div enable-select" style="text-align: center;">
+        <span class="text" style="font-size: 35px;color: rgb(139, 6, 6);">
+            Here are some images examples generated with this software:
+        </span>
+    </div>
+    <section class="flex">
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img src="images/example_image1.png" alt="">
+            </div>
+        </div>  
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img src="images/example_image2.png" alt="">
+            </div>
+        </div>     
+    </section>  
+    <section class="flex">
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img src="images/example_image3.png" alt="">
+            </div>
+        </div>  
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img src="images/example_image4.png" alt="">
+            </div>
+        </div>     
+    </section>  
+   
+    <section class="flex">
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img class="gif_img" src="images/example_gif1.gif" alt="">
+            </div>
+        </div>  
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img class="gif_img"  src="images/example_gif2.gif" alt="">
+            </div>
+        </div>     
+    </section>  
+    <section class="flex">
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img class="gif_img" src="images/example_gif3.gif" alt="">
+            </div>
+        </div>  
+        <div style="width: 46vw;margin: 1vw; padding: 2vw;">
+            <div style="margin-right: 30px;">
+                <img class="gif_img" src="images/example_gif4.gif" alt="">
+            </div>
+        </div>     
+    </section>
+    <div class="text_div enable-select" style="text-align: center;">
+        <span class="text" style="font-size: 35px;color: rgb(139, 6, 6);">
+            By zooming in the fractal and combining images you can get a zoom video. <br>
+            This following video is an example made with this software:
+        </span>
+    </div>
+    <br>
+    <iframe width="1080" height="604" src="https://www.youtube.com/embed/f7ImBdEY1L8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="title_div" style="background-color: rgb(255, 255, 255); padding: 20px;">
+        <span class="title">
+            How to use the Mandelbrowser Set
+        </span>
+        <br>
+        <span class="subtitle">
+            Exploring the Mandelbrot Set 
+        </span>
+    </div>
+    <br>
+    <br>
+    <div class="text_div enable-select">
+        <span class="text">
+            How it was told previously this software has three tools that works together: Searcher, Settings and Generator.
+            The first one to use is the Mandelbrowser Search in which you can navigate and save the points.
+            When you have the point list, you may go to the Settings tab and finally to the Generator tab.
+            To access those three tools you can click on them down below. If it is your first try, select the Search tool first and follow the tutorial there. The Search and Settings have tutorials that are located on the top left corner.
+        </span>        
+    </div>
+
+    <section class="flex">        
+        <div style="cursor: pointer;" onclick="open_search()">
+            <svg class="animate_SVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="62px" height="62px">
+                <g>
+                    <g>
+                        <path d="M310,190c-5.52,0-10,4.48-10,10s4.48,10,10,10c5.52,0,10-4.48,10-10S315.52,190,310,190z"/>
+                    </g>
+                </g>
+                <g>
+                    <g>
+                        <path d="M500.281,443.719l-133.48-133.48C388.546,277.485,400,239.555,400,200C400,89.72,310.28,0,200,0S0,89.72,0,200    s89.72,200,200,200c39.556,0,77.486-11.455,110.239-33.198l36.895,36.895c0.005,0.005,0.01,0.01,0.016,0.016l96.568,96.568    C451.276,507.838,461.319,512,472,512c10.681,0,20.724-4.162,28.278-11.716C507.837,492.731,512,482.687,512,472    S507.837,451.269,500.281,443.719z M305.536,345.727c0,0.001-0.001,0.001-0.002,0.002C274.667,368.149,238.175,380,200,380    c-99.252,0-180-80.748-180-180S100.748,20,200,20s180,80.748,180,180c0,38.175-11.851,74.667-34.272,105.535    C334.511,320.988,320.989,334.511,305.536,345.727z M326.516,354.793c10.35-8.467,19.811-17.928,28.277-28.277l28.371,28.371    c-8.628,10.183-18.094,19.65-28.277,28.277L326.516,354.793z M486.139,486.139c-3.78,3.78-8.801,5.861-14.139,5.861    s-10.359-2.081-14.139-5.861l-88.795-88.795c10.127-8.691,19.587-18.15,28.277-28.277l88.798,88.798    C489.919,461.639,492,466.658,492,472C492,477.342,489.919,482.361,486.139,486.139z"/>
+                    </g>
+                </g>
+                <g>
+                    <g>
+                        <path d="M200,40c-88.225,0-160,71.775-160,160s71.775,160,160,160s160-71.775,160-160S288.225,40,200,40z M200,340    c-77.196,0-140-62.804-140-140S122.804,60,200,60s140,62.804,140,140S277.196,340,200,340z"/>
+                    </g>
+                </g>
+                <g>
+                    <g>
+                        <path d="M312.065,157.073c-8.611-22.412-23.604-41.574-43.36-55.413C248.479,87.49,224.721,80,200,80c-5.522,0-10,4.478-10,10    c0,5.522,4.478,10,10,10c41.099,0,78.631,25.818,93.396,64.247c1.528,3.976,5.317,6.416,9.337,6.416    c1.192,0,2.405-0.215,3.584-0.668C311.472,168.014,314.046,162.229,312.065,157.073z"/>
+                    </g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+            </svg>    
+            <p class="pointer">Mandelbrowser <br> Search 
+            </p>
+            <div style="margin-right: 30px;">
+                <img src="images/tool_search_image.png" alt="">
+            </div>
+        </div>  
+        <div style="cursor: pointer;" onclick="open_settings()">
+            <svg class="animate_SVG" style="margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512" height="62px" viewBox="0 0 512 512" width="62px"><path d="m272.066 512h-32.133c-25.989 0-47.134-21.144-47.134-47.133v-10.871c-11.049-3.53-21.784-7.986-32.097-13.323l-7.704 7.704c-18.659 18.682-48.548 18.134-66.665-.007l-22.711-22.71c-18.149-18.129-18.671-48.008.006-66.665l7.698-7.698c-5.337-10.313-9.792-21.046-13.323-32.097h-10.87c-25.988 0-47.133-21.144-47.133-47.133v-32.134c0-25.989 21.145-47.133 47.134-47.133h10.87c3.531-11.05 7.986-21.784 13.323-32.097l-7.704-7.703c-18.666-18.646-18.151-48.528.006-66.665l22.713-22.712c18.159-18.184 48.041-18.638 66.664.006l7.697 7.697c10.313-5.336 21.048-9.792 32.097-13.323v-10.87c0-25.989 21.144-47.133 47.134-47.133h32.133c25.989 0 47.133 21.144 47.133 47.133v10.871c11.049 3.53 21.784 7.986 32.097 13.323l7.704-7.704c18.659-18.682 48.548-18.134 66.665.007l22.711 22.71c18.149 18.129 18.671 48.008-.006 66.665l-7.698 7.698c5.337 10.313 9.792 21.046 13.323 32.097h10.87c25.989 0 47.134 21.144 47.134 47.133v32.134c0 25.989-21.145 47.133-47.134 47.133h-10.87c-3.531 11.05-7.986 21.784-13.323 32.097l7.704 7.704c18.666 18.646 18.151 48.528-.006 66.665l-22.713 22.712c-18.159 18.184-48.041 18.638-66.664-.006l-7.697-7.697c-10.313 5.336-21.048 9.792-32.097 13.323v10.871c0 25.987-21.144 47.131-47.134 47.131zm-106.349-102.83c14.327 8.473 29.747 14.874 45.831 19.025 6.624 1.709 11.252 7.683 11.252 14.524v22.148c0 9.447 7.687 17.133 17.134 17.133h32.133c9.447 0 17.134-7.686 17.134-17.133v-22.148c0-6.841 4.628-12.815 11.252-14.524 16.084-4.151 31.504-10.552 45.831-19.025 5.895-3.486 13.4-2.538 18.243 2.305l15.688 15.689c6.764 6.772 17.626 6.615 24.224.007l22.727-22.726c6.582-6.574 6.802-17.438.006-24.225l-15.695-15.695c-4.842-4.842-5.79-12.348-2.305-18.242 8.473-14.326 14.873-29.746 19.024-45.831 1.71-6.624 7.684-11.251 14.524-11.251h22.147c9.447 0 17.134-7.686 17.134-17.133v-32.134c0-9.447-7.687-17.133-17.134-17.133h-22.147c-6.841 0-12.814-4.628-14.524-11.251-4.151-16.085-10.552-31.505-19.024-45.831-3.485-5.894-2.537-13.4 2.305-18.242l15.689-15.689c6.782-6.774 6.605-17.634.006-24.225l-22.725-22.725c-6.587-6.596-17.451-6.789-24.225-.006l-15.694 15.695c-4.842 4.843-12.35 5.791-18.243 2.305-14.327-8.473-29.747-14.874-45.831-19.025-6.624-1.709-11.252-7.683-11.252-14.524v-22.15c0-9.447-7.687-17.133-17.134-17.133h-32.133c-9.447 0-17.134 7.686-17.134 17.133v22.148c0 6.841-4.628 12.815-11.252 14.524-16.084 4.151-31.504 10.552-45.831 19.025-5.896 3.485-13.401 2.537-18.243-2.305l-15.688-15.689c-6.764-6.772-17.627-6.615-24.224-.007l-22.727 22.726c-6.582 6.574-6.802 17.437-.006 24.225l15.695 15.695c4.842 4.842 5.79 12.348 2.305 18.242-8.473 14.326-14.873 29.746-19.024 45.831-1.71 6.624-7.684 11.251-14.524 11.251h-22.148c-9.447.001-17.134 7.687-17.134 17.134v32.134c0 9.447 7.687 17.133 17.134 17.133h22.147c6.841 0 12.814 4.628 14.524 11.251 4.151 16.085 10.552 31.505 19.024 45.831 3.485 5.894 2.537 13.4-2.305 18.242l-15.689 15.689c-6.782 6.774-6.605 17.634-.006 24.225l22.725 22.725c6.587 6.596 17.451 6.789 24.225.006l15.694-15.695c3.568-3.567 10.991-6.594 18.244-2.304z"/><path d="m256 367.4c-61.427 0-111.4-49.974-111.4-111.4s49.973-111.4 111.4-111.4 111.4 49.974 111.4 111.4-49.973 111.4-111.4 111.4zm0-192.8c-44.885 0-81.4 36.516-81.4 81.4s36.516 81.4 81.4 81.4 81.4-36.516 81.4-81.4-36.515-81.4-81.4-81.4z"/></svg>
+    
+            <p class="pointer">Mandelbrowser <br> Settings</p>
+            <div style="margin-right: 30px;">
+                <img src="images/tool_config_image.png" alt="">
+            </div>
+        </div>
+        <div style="cursor: pointer;" onclick="open_generator()">
+            <svg class="animate_SVG" xmlns="http://www.w3.org/2000/svg" height="62px" viewBox="0 0 512 512" width="62px"><path d="m475.082031 205.300781c-5.609375-24.34375-15.101562-47.269531-28.316406-68.378906l19.03125-31.742187-58.976563-58.976563-31.742187 19.03125c-21.109375-13.214844-44.035156-22.707031-68.378906-28.316406l-8.980469-36.917969h-83.4375l-8.980469 36.917969c-24.34375 5.609375-47.269531 15.101562-68.378906 28.316406l-31.742187-19.03125-58.976563 58.976563 19.03125 31.742187c-13.214844 21.109375-22.707031 44.035156-28.316406 68.378906l-36.917969 8.980469v83.4375l36.917969 8.980469c5.609375 24.34375 15.101562 47.269531 28.316406 68.378906l-19.03125 31.742187 58.976563 58.976563 31.742187-19.03125c21.109375 13.214844 44.035156 22.707031 68.378906 28.316406l8.980469 36.917969h83.4375l8.980469-36.917969c24.34375-5.609375 47.269531-15.101562 68.378906-28.316406l31.742187 19.03125 58.976563-58.976563-19.03125-31.742187c13.214844-21.109375 22.707031-44.035156 28.316406-68.378906l36.917969-8.980469v-83.4375zm-219.082031 215.699219c-90.980469 0-165-74.019531-165-165s74.019531-165 165-165 165 74.019531 165 165-74.019531 165-165 165zm0 0"/><path d="m271 121.921875-117.816406 179.078125h87.816406v89.078125l117.816406-179.078125h-87.816406zm0 0"/></svg>
+    
+            <p class="pointer">Mandelbrowser <br> Generator</p>
+            <div style="margin-right: 30px;">
+                <img src="images/tool_generator_image.png" alt="">
+            </div>
+        </div>      
+    </section>
+    <script>
+        function open_search(){
+            window.open('./tools/search/mandelbrowser_search.html')
+        }
+        function open_settings(){
+            window.open('./tools/settings/mandelbrowser_settings.html')
+        }
+        function open_generator(){
+            window.open('./tools/generator/mandelbrowser_generator.html')
+        }
+        function scroll_down(){
+            window.scrollTo(0,document.body.scrollHeight)
+        }
+    </script>
+</body>
+</html>

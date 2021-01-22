@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandelbrot Configuration</title>
+    <link rel="shortcut icon" href="../../icons/icon.png">
+    <style>
+        .table-fill {
+            background: white;
+            border-radius:3px;
+            border-collapse: collapse;
+            overflow-y: auto;
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse; 
+            padding:5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .text-center{
+            text-align: center;
+        }        
+        th {
+        color:#D5DDE5;;
+        background:#1b1e24;
+        border-bottom:4px solid #9ea7af;
+        border-right: 1px solid #343a45;
+        font-size: small;
+        font-weight: 100;
+        padding:2px;
+        text-align:left;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        vertical-align:middle;
+        }
+        th:first-child {
+        border-top-left-radius:3px;
+        }        
+        th:last-child {
+        border-top-right-radius:3px;
+        border-right:none;
+        }        
+        tr {
+        border-top: 1px solid #C1C3D1;
+        border-bottom: 1px solid #C1C3D1;
+        color:#666B85;
+        font-size:16px;
+        font-weight:normal;
+        text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+        }
+        tr:first-child {
+        border-top:none;
+        }
+        tr:last-child {
+        border-bottom:none;
+        }           
+        tr:hover td {
+        background:#f1f1ff;
+        }
+        /* tr:hover td:nth-child(1) {
+        background:#f2fbd0;
+        } */
+        #tableCalendar tr:hover td {
+        background:#ffffff;
+        }
+        tr:last-child td:first-child {
+        border-bottom-left-radius:3px;
+        }        
+        tr:last-child td:last-child {
+        border-bottom-right-radius:3px;
+        }        
+        td {
+        background:#FFFFFF;
+        padding:2px;
+        text-align:center;
+        vertical-align:middle;
+        color: #3b2727;
+        font-size:20px;
+        max-width: 100px;
+        overflow-x:auto;
+        border-right: 1px solid #C1C3D1;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body{
+            font-size: large;
+            font-family: Verdana;
+            background-image: url('../../icons/mandelbrot_image.jpg');
+            /* color: rgb(59, 12, 0); */
+            color: white;
+        }
+        input{
+            background-color: rgb(255, 255, 255);
+            font-size: x-large;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            width: 100px;
+            text-align: center;
+            margin:10px;
+            box-shadow:  0px 0px 20px black;
+            transition: 1s;
+        }
+        input:hover{
+            background-color: rgb(190, 255, 179);
+        }
+        input[type=button]{
+            font-size: large;
+            font-family: Arial;
+        }
+        #zoom_orientation{
+            background-color: rgb(255, 255, 255);
+            font-size: x-large;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            text-align-last: center;
+            margin:10px;
+            box-shadow:  0px 0px 20px black;
+            transition: 1s;
+        }
+        #zoom_orientation:hover{
+            background-color: rgb(190, 255, 179);
+        }
+        .check_box{
+            width: 30px;
+            height: 30px;
+            font-size: xx-large;
+        }
+        canvas{
+            margin-top: 25px;
+            box-shadow: 0px 0px 20px rgb(0, 26, 255);
+        }
+        #canvas2{
+            box-shadow: 0px 0px 40px rgb(168, 255, 222);
+        }
+        .pointer:hover{
+            cursor: pointer;
+        }
+        .disable-select {
+            user-select:none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .enable-select {
+            user-select:text;
+            -webkit-user-select: text;
+            -khtml-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+        .flex_content{
+            background-color: rgba(24, 0, 158, 0.15);
+            box-shadow: 0px 0px 15px black;
+            margin-top: 10px;
+            padding: 0px 0px 0px 0px ;
+            width: 50%;
+            height: auto;
+            overflow: hidden;
+        }
+        .flex_content_2{
+            background-color: rgba(24, 0, 158, 0.15);
+            box-shadow: 0px 0px 15px black;
+            margin-top: 10px;
+            padding: 0px 0px 50px 0px ;
+            width: 48%;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            transition:1s
+        }
+        .flex_content_2:hover{
+            background-color: rgba(24, 0, 158, 0.199);
+        }
+        #apply_button{
+            width: fit-content;
+            margin-bottom: 0px;
+            padding: 5px 10px;
+            margin-top:0px;
+            background-color: black;
+            color: cornsilk;
+            transition: 1s;
+        }
+        #apply_button:hover{
+            background-color: rgb(230, 255, 222);
+            color: rgb(66, 53, 0);
+        }
+        .above_text{
+            font-size: small;
+            /* position: absolute;
+            top: -1em; */
+        }
+        .below_text{
+            font-size: medium;
+            position: absolute;
+            bottom: -1.2em;
+        }
+        .animateSVG{
+            animation: bounce_ 900ms;
+        }
+        .animateSVG:hover{
+            animation: bounce 600ms;
+        }
+        @keyframes bounce{
+            0%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+            25%{
+                transform: translate3d(0px, 2px, 0px);
+            }
+            75%{
+                transform: translate3d(0px, -1px, 0px);
+            }
+            100%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+        }
+        @keyframes bounce_{
+            0%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+            25%{
+                transform: translate3d(0px, 0.5px, 0px);
+            }
+            75%{
+                transform: translate3d(0px, -1px, 0px);
+            }
+            100%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+        }
+        .background_coloring{
+            background-color: rgba(74, 55, 158, 0.239);
+            margin: 4px 0px;
+            transition: 500ms;
+        }
+        .background_coloring:hover{
+            background-color:  rgba(108, 88, 194, 0.239);
+            box-shadow: 0px 0px 5px #ffffff;
+        }
+        .svg_pause_play{
+            padding: 2px;
+            fill: rgb(255, 255, 255);
+            /* background-color: rgb(0, 0, 0); */
+        }
+        #tutorial_button{
+            position: fixed; 
+            top: 10px; 
+            left: 15px; 
+            font-size: 35px;
+            background-color: #ffffff34;
+            color: #1b1e24;
+            border: none;
+            outline: none;
+            box-shadow: 0px 0px 20px black;
+            transition:1500ms;
+            animation: bounce_ 900ms;
+        }
+        #tutorial_button:hover{   
+            background-color: #4756df34;
+            color: #ffffff;
+            box-shadow: 0px 0px 20px black;
+            transition:400ms;
+            animation: bounce 600ms;
+            cursor: pointer;
+        }
+        
+        .popup-wrapper{
+            background: rgba(0, 0, 0, 0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            overflow-y: scroll;
+        }
+        .popup-wrapper-create{
+            background: rgba(0, 0, 0, 0.267);
+            position: absolute;
+            width: 100%;
+            height: 96%;
+            top: 0;
+            display: none;
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }
+
+        .popup {
+            font-family: Arial;
+            text-align: center;
+            width: fit-content;
+            max-width: 80vw;
+            margin: 7% auto;
+            padding: 50px;
+            background: white;
+            position: relative;
+            box-shadow: 0px 0px 1000px black;
+        }
+        .popup-create{
+            font-family: Arial;
+            text-align: center;
+            width: fit-content;
+            padding: 50px;
+            background: white;
+            position: absolute;
+            box-shadow: 0px 0px 1000px black;
+            margin: 7% auto;
+            max-width: none;
+            overflow-x: scroll;
+        }
+        .popup-close{
+            position: absolute;
+            font-size: xx-large;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            color: #3b2727;
+        }
+        .colored{
+            background-color: #1b1e24;
+            text-shadow: 0px 0px 10px #1b1e24;
+            color: #1b1e24;
+            border-radius: 4px;
+        }
+        .colored_{
+            background-color: #ffffff;
+            text-shadow: 0px 0px 10px #1b1e24;
+            color: #1b1e24;
+        }
+        
+    </style>
+</head>
+<body class="disable-select">       
+    <div style="text-align: center;">
+        <div style="display: flex; justify-content: space-evenly;
+        align-items: center;">
+            <div class="flex_content_2" >
+                <div style="position: relative; margin-top: 35px;">
+                <canvas id="canvas1" style="cursor:crosshair;"></canvas><br><br>
+                <input id="apply_button" type="button" class="pointer" style="width: fit-content; margin-bottom: 20px;padding: 5px 0px; font-size: large;" onclick="copycode()" value="COPY MANDELBROWSER CODE" title="Copy Mandelbrowser Code">
+                <textarea name="" id="textareacode" oninput="check_code()" cols="67" rows="1" style="font-size: 20px; outline: none; border: none; box-shadow: 0px 0px 7px #1b1e24;" placeholder="Paste your zoom code here to load the set of configurations..." title="Paste Mandelbrowser Code"></textarea>
+                <!-- <span style="color: rgb(59, 12, 0);">Points List</span> -->
+                <table class="table-fill enable-select">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                pX                                
+                            </th>
+                            <th class="text-center">
+                                pY
+                            </th>
+                            <th class="text-center">
+                                Zoom 
+                            </th>
+                            <th class="text-center">
+                                Hue                                
+                            </th>
+                            <th class="text-center">
+                                Color
+                            </th>
+                            <th class="text-center">
+                                Smooth
+                            </th>
+                            <th class="text-center">
+                                Max Iter
+                            </th>
+                            <th class="text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="animateSVG" height="35px" width="35px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;fill:#f1f1ff;" xml:space="preserve">
+                                <title>Delete</title>
+                                <g>
+                                    <g>
+                                        <path d="M436,60h-90V45c0-24.813-20.187-45-45-45h-90c-24.813,0-45,20.187-45,45v15H76c-24.813,0-45,20.187-45,45v30    c0,8.284,6.716,15,15,15h16.183L88.57,470.945c0.003,0.043,0.007,0.086,0.011,0.129C90.703,494.406,109.97,512,133.396,512    h245.207c23.427,0,42.693-17.594,44.815-40.926c0.004-0.043,0.008-0.086,0.011-0.129L449.817,150H466c8.284,0,15-6.716,15-15v-30    C481,80.187,460.813,60,436,60z M196,45c0-8.271,6.729-15,15-15h90c8.271,0,15,6.729,15,15v15H196V45z M393.537,468.408    c-0.729,7.753-7.142,13.592-14.934,13.592H133.396c-7.792,0-14.204-5.839-14.934-13.592L92.284,150h327.432L393.537,468.408z     M451,120h-15H76H61v-15c0-8.271,6.729-15,15-15h105h150h105c8.271,0,15,6.729,15,15V120z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M256,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C271,186.716,264.284,180,256,180z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M346,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C361,186.716,354.284,180,346,180z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M166,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C181,186.716,174.284,180,166,180z"/>
+                                    </g>
+                                </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>/g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        
+                    </tbody>
+                </table>    
+            </div>
+            </div>                 
+            <div class="flex_content_2">               
+                <div class="background_coloring">
+                    <div style="display: flex; justify-content: space-evenly;
+                    align-items: center;"> 
+                        <div>
+                            <span class="sections_titles">Zoom Text</span><br>
+                            <input type="color"class="pointer" title="Text Color" name="" id="text_color" onchange="update_values()">
+                            <input type="checkbox" title="Enable Text" class="check_box pointer" name="" id="allow_zoom_text" onchange="update_values()">
+                            <input type="number" title="Text Size" name="" id="zoom_text_font_size" onchange="update_values()"><br>
+                        </div>
+                        <div>
+                            <span class="sections_titles">Zoom Point</span><br>
+                            <input type="color"class="pointer" title="Zoom Point Color" name="" id="zoom_point_color" onchange="update_values()">
+                            <input type="checkbox" title="Enable Zoom Point" class="check_box pointer" name="" id="allow_zoom_point" onchange="update_values()">
+                            <input type="number" title="Point Size" name="" id="zoom_point_size" onchange="update_values()"><br>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="background_coloring">
+                    <span class="sections_titles">Max Iterations</span>
+                    <input title="Max Iteration" title="Max Iteration" type="number" style="width: 130px;" name="" id="max_iteration" onchange="update_values()">
+                </div> -->
+                <!-- <span class="sections_titles">&nbsp; &nbsp;&nbsp;  &nbsp; Zoom &nbsp; &nbsp; &nbsp; </span> -->
+                <!-- <input title="Zoom" title="Initial Zoom" type="number" style="width: 130px;" name="" id="zoom" onchange="update_values()"> -->
+                <div class="background_coloring">
+                    <span class="sections_titles">Zoom Orientation</span>
+                    <br><select name="Zoom Orientation" title="Zoom Orientation" class="pointer" id="zoom_orientation" onchange="update_values()">
+                        <option value="center">Center</option>
+                        <option value="top-left">Top Left</option>
+                        <option value="top-right">Top Right</option>
+                        <option value="bottom-left">Bottom Left</option>
+                        <option value="bottom-right">Bottom Right</option>
+                        <option value="mid-left">Mid Left</option>
+                        <option value="mid-right">Mid Right</option>
+                        <option value="mid-top">Mid Top</option>
+                        <option value="mid-bottom">Mid Bottom</option>            
+                    </select>
+                </div>
+                <div class="background_coloring">
+                    <span class="sections_titles">&nbsp; File Name </span><input type="text" style="width: 350px;" name="" id="file_name" title="File Name" onchange="update_values()"><br>
+                    <span class="sections_titles">&nbsp; File Counter</span>
+                    <input type="number" style="width: 200px;" name="" id="file_counter" title="File Counter" onchange="update_values()">             
+                    <input type="button" title="Apply configuration" id="apply_button" class="pointer" onclick="apply_effects_according_to_file_counter()" value="  APPLY  ">
+
+                </div>
+                <div class="background_coloring">
+                <span class="sections_titles above_text" >Enable Download &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Enable Zoom&nbsp;&nbsp;</span><br>
+                <input type="checkbox" title="Enable Download" class="check_box pointer" name="" onchange="update_values()" id="enable_download">
+                &nbsp;&nbsp;&nbsp;
+                <span class="sections_titles below_text" >Pixel Width</span>
+                <input type="number" title="Pixel Width" name="" id="pixel_width" onchange="update_values()">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="sections_titles above_text" ></span>
+                <input type="checkbox" title="Enable Zoom" class="check_box pointer" name="" onchange="update_values()" id="enable_zoom">
+                </div>
+                <input type="button" title="Preview" id="apply_button" class="pointer" onclick="preview()" value="PREVIEW">
+                <br>
+                <input type="button" class="pointer" style="width: fit-content; margin-top: 20px;padding: 5px 0px;" onclick="open_generator()" value=" GENERATE MANDELBROT ">    
+            </div>
+        </div>
+    </div>
+    <div id="popup-preview" style="display: none; position: fixed; left: 40vw; top: 30vh; height: 30vh; width: 20vw; background-color: rgba(0, 0, 53, 0.541); align-items: center; text-align: center; box-shadow: 0px 0px 30px rgb(1, 21, 87);">
+        <span onclick="close_preview()" style="position: absolute; right:15px; top: 10px; color: cornsilk; cursor: pointer; font-size: 35px;">X</span>
+        <canvas id="canvas2" style="position: absolute;top: 0;bottom: 100px;left: 0;right: 0;margin: auto;"></canvas>
+        <span id="svg_pause_play" onclick="change_pause_play_state()" style=" position: absolute;bottom:75px;left: 0;right: 0;margin: auto;">
+        </span>
+        <span id="preview_file_counter" style="color: white; position: absolute;bottom:45px;left: 0;right: 0;margin: auto; font-size: 25px;">aaaa</span>
+        <span id="preview_file_title" style="color: white; position: absolute;bottom: 15px;left: 0;right: 0;margin: auto; font-size: 25px;"></span>
+    </div>
+    <button id="tutorial_button" onclick="open_tutorial()">
+        Tutorial
+    </button>
+    <div class="popup-wrapper" id="popup-tutorial">
+        <div class="popup" id="popupTUTORIAL">
+            <div class="popup-close">X</div>
+            <div class="popup-content">
+                <div style="margin: 10px auto 20px auto; text-align: center;">
+                    <span style="font-size: xx-large; color: darkblue; margin: 0 auto ">Mandelbrowser Tutorial <br> <span style="color:rgb(139, 0, 65);">Configuration</span></span><br><br> 
+                </div>
+                <div style="margin: 10px auto 18px auto; text-align: justify;">                   
+                    <span style="font-size: medium; color: rgb(93, 37, 0); ">
+                        If you are reading this I supose you have already passed through
+                        the Search tab. I also consider that you already have a point list.
+                        If that is not the case, please go back to the Search tab and get one ;)
+                        <br><br>
+                        With the point list made you can configure the images generation.
+                        On this tab you have on your left the mandelbrot preview and the point list,
+                        and on your right all the configurations.
+                        On the configuration side from top to bottom you have: 
+                        <span style="font-size:small">
+                        <br><br>
+                        <span style="color: #ff0000;">- Zoom Text ➡</span> Configure the text that shows the zoom (enable, color, size).
+                        <br>
+                        <span style="color: #ff0000;">- Zoom Point ➡</span> Configure the point that indicates the zoom direction (enable, color, size). 
+                        <br>
+                        <!-- <span style="color: #ff0000;">- Max Iteration ➡</span> Set the max number of calculations for each pixel in the Mandelbrot Set.
+                        <br>                         -->
+                        <span style="color: #ff0000;">- Zoom Orientation ➡</span>  Set the zoom orientation, that is which side of the screen 
+                                                    the zoom will go.
+                        <br>                        
+                        <span style="color: #ff0000;">- File Name ➡</span>  Set the image's file name. The file name will be = 'File Name' + 'File Counter'.
+                        <br>                        
+                        <span style="color: #ff0000;">- File Counter ➡</span>  Set which part of the zoom you are. Number 1 is the first point, and number N is the Nth steps from number 1 of the zoom according to the points list.
+                        <br>
+                        <span style="color: #ff0000;">- Enable Download ➡</span>  Enable or disable the download of the images (make sure you checked which directory the browser is downloading files).
+                        <br>
+                        <span style="color: #ff0000;">- Pixel Width ➡</span>  Set the resolution in pixels of the image, this input refers to the width of the image in pixels. The height in pixels is the width &times; 0.5625.
+                        <br>
+                        <span style="color: #ff0000;">- Enable Zoom ➡</span>  Enable or disable zooming. If you want to take one single image disable this option, otherwise if it is a video make sure this option is checked.
+                        <br>
+                        <span style="color: #ff0000;">- Preview ➡</span>  Runs a preview of the zooming. The width and max iteration are not considered on that preview due to time in processing. 
+                        To make this preview the width and height must be really small and so does the max iteration.
+                        <br><br>
+                    </span>
+                    Once you have set all the configurations you can <span style="color: #018388;">'COPY MANDELBROWSER CODE'</span>. This code is the zoom's identity, it is highly recommended you to paste it.
+                    This code stores the point list and configurations, so that you can paste it bellow the <span style="color: #018388;">'COPY MANDELBROWSER CODE'</span> button and load the point list and configuration.
+                    Also this code can be the hash code of the Mandelbrot Generator. If you get the Generator URL and add # and the <span style="color: #018388;">'MANDELBROWSER CODE'</span>
+                    the image generation will start. All the information is stored in this code. 
+                    Its structure goes like that :  <br><br>
+<pre style="font-size: 25px; color: #001957;">                        
+{
+    file_counter:1,
+    max_iteration:50000,
+    width:1080,
+    file_name:'mandelbrot_zoom',
+    enable_zoom:true,
+    enable_download:true,
+    zoom_orientation:'center',
+    enable_point:false,
+    point_color:<span class="colored" style="color:#ffffff;">'#ffffff'</span>,
+    point_size:2,
+    enable_text:false,
+    text_color:<span class="colored_" style="color:#002688;">'#002688'</span>,
+    text_size:27,
+    list_of_points:
+            <span style="font-size: 10px;">
+            [
+                {pX:0,pY:0,zoom:0.4,hue:<span class="colored" style="color: #c994ff;">'#c994ff'</span>,inmandelbrot_color:<span class="colored"  style="color: #89bb00;">'#bbff00'</span>,smooth_coloring:false,max_iteration:10000},
+                {pX:0,pY:0,zoom:1,hue:<span class="colored"  style="color: #94dfff;">'#94dfff'</span>,inmandelbrot_color:<span class="colored"  style="color: #b1b1b1;">'#ffffff'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10,hue:<span class="colored"style="color:#94abff;">'#94abff'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:600,hue:<span class="colored"style="color:#94abff;">'#94abff'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000,hue:<span class="colored"style="color: #94ffa9;">'#94ffa9'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:100000,hue:<span class="colored"style="color: #f3ff94;">'#f3ff94'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:1000000,hue:<span class="colored"style="color: #94dfff;">'#94dfff'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000000,hue:<span class="colored"style="color: #94d6ff;">'#94d6ff'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:100000000,hue:<span class="colored"style="color: #94ffd4;">'#94ffd4'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:1000000000,hue:<span class="colored"style="color: #cfff94;">'#cfff94'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000000000,hue:<span class="colored"style="color: #ffdd94;">'#ffdd94'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:100000000000,hue:<span class="colored"style="color: #b9ff94;">'#b9ff94'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:1000000000000,hue:<span class="colored"style="color: #ff9494;">'#ff9494'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>},smooth_coloring:false,max_iteration:10000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000000000000,hue:<span class="colored"style="color: #94ffcb;">'#94ffcb'</span>,inmandelbrot_color:<span class="colored_"style="color: #02015b;">'#02015b'</span>,smooth_coloring:false,max_iteration:10000}
+            ]</span>
+}
+</pre> 
+                    <br><br>
+                    If you want to make a video, you can start capturing the images and then if you have to interrupt the process
+                    you can retake it days later by pasting the <span style="color: #018388;">'MANDELBROWSER CODE'</span>
+                    into the decoder (bellow the <span style="color: #018388;">'COPY MANDELBROWSER CODE'</span> button)
+                    and setting the file counter to continue where the files have stopped.
+                    <br><br>
+                    After saving your <span style="color: #018388;">'MANDELBROWSER CODE'</span> (can save it on a .txt file)
+                    you can start generating the images. To do that, make sure that all the configuration are set correctly and 
+                    click on <span style="color: #018388;">'GENERATE MANDELBROT'</span>. By clicking on that button 
+                    the generation tab will be oppened and the generating process will be started. Deppending on your browser you will have
+                    to allow the download of the files from time to time. 
+                    <br><br>
+                    After the download of all images, if you want to make a video, you have to join all the images in sequence and reduce them to a frame to make the animation. 
+                    To do that you have to use a video editor, this software only generate the images, it does not join them on a video
+                    <br><br>
+                    It is important to know that the time of the image generation may be different deppending on the zoom configuration and points that will be zoomed.
+                    For example: larger the image, longer the time; bigger the max iteration, longer the time;
+                    if the smooth coloring is on, longer the time to generate the image. And there
+                    is an important factor that lenghts the generating time: if the zoom or image has
+                    a lot of in-mandelbrot points the time will be longer. That occurs because the computer
+                    has to calculate a lot of in-mandelbrot points, which have the longest time of all points.
+                </span>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/canvas_preview.js"></script>
+</body>
+</html> 

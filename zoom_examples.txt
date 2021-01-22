@@ -1,0 +1,270 @@
+SOME ZOOM EXAMPLES:
+
+COPY THE MANDELBROWSER CODE AND PASTE IT ON THE SETTINGS TAB 
+
+---------------------------
+DEEP PURPLE:
+    MANDELBROWSER CODE:        
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'deep_purple',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:5000},
+                {pX:-0.5693565694919585,pY:0.6258026753606527,zoom:2.500243900802678,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:10000},
+                {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:10000},
+                {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:5000},
+                {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.4700714292566631,pY:0.6225923237926176,zoom:244.22399969899936,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.47286473510817717,pY:0.6242238209323686,zoom:3816.5584441940478,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.47286473510817717,pY:0.6242238209323686,zoom:3816.5584441940478,hue:'#b094ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.4728824174579407,pY:0.6242424830733859,zoom:59642.45273151413,hue:'#94ffa6',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:-0.4728784996493322,pY:0.6242404321795244,zoom:932049.7039007312,hue:'#ffdd94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:-0.4728785792502104,pY:0.6242403629605768,zoom:5825878.968556862,hue:'#ffe294',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:4000},
+                {pX:-0.47287873949064896,pY:0.6242402555424178,zoom:36415295.894872226,hue:'#ffe294',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:4000},
+                {pX:-0.47287874078399195,pY:0.6242402553298096,zoom:227617803.6426977,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:4000},
+                {pX:-0.4728787408787868,pY:0.6242402553559475,zoom:3557048658.658094,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:6000},
+                {pX:-0.4728787408823051,pY:0.6242402553544527,zoom:138974326020.80273,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:6000},
+                {pX:-0.4728787408822726,pY:0.624240255354295,zoom:868674277504.1874,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+                {pX:-0.4728787408822726,pY:0.624240255354295,zoom:868674277504.1874,hue:'#ffaf94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+                {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:2171791626353.6013,hue:'#ffaf94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+                {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:2171791626353.6013,hue:'#b494ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+                {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:8000},
+                {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+                {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:15000},
+                {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:20000}
+            ]
+        }
+    Range of images:
+        From 1 to 4802
+---------------------------
+
+---------------------------
+Five Degrees of Mandelbrot:
+    MANDELBROWSER CODE:     
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'five_degrees_of_mandelbrot',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:true,
+            text_color:'#000000',
+            text_size:18,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.253254106396301,pY:0.3842292815234295,zoom:5.68483491388582,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.2536905869145643,pY:0.38454120155250693,zoom:59642.45273151413,hue:'#96ff94',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.253690772027326,pY:0.38454214605153403,zoom:2330237.9208151517,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.2536901736135484,pY:0.3845422974445912,zoom:5825878.968556862,hue:'#94fffd',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.2536901815280805,pY:0.38454231035613,zoom:91042680.48882218,hue:'#94c8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.2536901816664707,pY:0.38454231042618614,zoom:3557048658.6580944,hue:'#94c8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000}
+            ]
+        }
+    Range of images:
+        From 1 to 2882
+---------------------------
+
+---------------------------
+Coloring Change:
+    MANDELBROWSER CODE:
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'coloring_change',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,enable_text:false,
+            text_color:'#000000',
+            text_size:18,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7605551761820655,pY:-0.010555718144194093,zoom:6.250609752006695,hue:'#dd94ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7586379479590195,pY:0.018648176353097626,zoom:244.21208728471453,hue:'#94fff8',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7623246264857573,pY:0.02292178085405995,zoom:3816.3722854816133,hue:'#94fff8',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7623188093983326,pY:0.022930823436313284,zoom:149106.1318287853,hue:'#94fff8',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.762317591166005,pY:0.022931684031016194,zoom:2330124.259751827,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.762317814473109,pY:0.022931579457987267,zoom:36413519.680857465,hue:'#9b94ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7623178548121807,pY:0.022931605254223966,zoom:569044509.106744,hue:'#9b94ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7623178548281944,pY:0.022931605345993637,zoom:8892621646.645233,hue:'#94eaff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7623178548281944,pY:0.022931605345993637,zoom:22232638548.9431,hue:'#ffa994',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-1.7623178548247584,pY:0.02293160535380286,zoom:8892621646.645233,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000}
+            ]
+        }
+    Range of images:
+        From 1 to 3229
+---------------------------
+
+---------------------------
+Spider Web:
+    MANDELBROWSER CODE:
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'spider_web',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:true,
+            text_color:'#002375',
+            text_size:15,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.151218603653885,pY:1.043256175869746,zoom:4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.151218603653885,pY:1.043256175869746,zoom:22130410976707,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000}
+            ]
+        }    
+    Range of images:
+        From 1 to 3974
+---------------------------
+
+---------------------------
+Spiral:
+    MANDELBROWSER CODE:
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'spiral',
+            enable_zoom:'true',
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002375',
+            text_size:15,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.42721750715170403,pY:0.09277663965730776,zoom:6.250609752006695,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.3821551587396701,pY:0.20805496699569942,zoom:39.070122271881196,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.38362254995911255,pY:0.1998761185780278,zoom:97.68007018059068,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.37841848599403216,pY:0.20633143289536793,zoom:244.21208728471453,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.37549073649431847,pY:0.21232567952607695,zoom:1526.4744543397467,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.37498581430686,pY:0.21318538437962264,zoom:23854.65382491945,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.37498361161777055,pY:0.21318508496563243,zoom:2330124.259751827,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.3749835770526709,pY:0.21318505105949348,zoom:36413519.680857465,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.37498357565836843,pY:0.213185052248684,zoom:1422680666.2806532,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
+                {pX:0.37498357561268003,pY:0.21318505227250395,zoom:8892621646.645233,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000}
+            ]
+        }
+    Range of images:
+        From 1 to 2886
+---------------------------
+
+---------------------------
+Net:
+    MANDELBROWSER CODE:
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'net',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#c994ff',inmandelbrot_color:'#bbff00',smooth_coloring:false,max_iteration:50000},
+                {pX:0,pY:0,zoom:1,hue:'#94dfff',inmandelbrot_color:'#ffffff',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10,hue:'#94abff',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:600,hue:'#94abff',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000,hue:'#94ffa9',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:100000,hue:'#f3ff94',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:1000000,hue:'#94dfff',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000000,hue:'#94d6ff',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:100000000,hue:'#94ffd4',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:1000000000,hue:'#cfff94',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000000000,hue:'#ffdd94',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:100000000000,hue:'#b9ff94',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:1000000000000,hue:'#ff9494',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000},
+                {pX:-0.7887247150174553,pY:0.16158242546747897,zoom:10000000000000,hue:'#94ffcb',inmandelbrot_color:'#02015b',smooth_coloring:false,max_iteration:50000}
+            ]
+        }
+    Range of images:
+        From 1 to 3872
+---------------------------
+
+---------------------------
+CROSSGUARD GIF:
+    MANDELBROWSER CODE:
+        {
+            file_counter:1,
+            width:1080,
+            file_name:'crossguard',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            list_of_points:
+            [
+                {pX:-1.2528783713612426,pY:0.024222274742975346,zoom:3816.3722854816133,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:-1.2528783713612426,pY:0.024222274742975346,zoom:3816.3722854816133,hue:'#ff9496',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000}
+            ]
+        }
+    Range of images:
+        From 1 to 359
+---------------------------
+
+---------------------------
+HURRICANE GIF:
+    MANDELBROWSER CODE:
+        {
+            file_counter:1,
+            width:720,
+            file_name:'hurricane',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:18,
+            list_of_points:
+            [
+                {pX:-0.762343268653735,pY:0.0905546228883266,zoom:149106.1318287853,hue:'#b9ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:20000},
+                {pX:-0.762343268653735,pY:0.0905546228883266,zoom:149106.1318287853,hue:'#b9ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:10000},
+                {pX:-0.762343268653735,pY:0.0905546228883266,zoom:149106.1318287853,hue:'#b9ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:5000},
+                {pX:-0.762343268653735,pY:0.0905546228883266,zoom:149106.1318287853,hue:'#ffa494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:5000}
+            ]                
+        }
+    Range of images:
+        From 1 to 290
+---------------------------

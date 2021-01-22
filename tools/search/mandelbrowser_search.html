@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandelbrot Search</title>
+        <link rel="shortcut icon" href="../../icons/icon.png">
+    <style>
+        .table-fill {
+            background: white;
+            border-radius:3px;
+            border-collapse: collapse;
+            height: 320px;
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse; 
+            padding:5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .text-center{
+            text-align: center;
+        }        
+        th {
+        color:#D5DDE5;;
+        background:#1b1e24;
+        border-bottom:4px solid #9ea7af;
+        border-right: 1px solid #343a45;
+        font-size: small;
+        font-weight: 100;
+        padding:2px;
+        text-align:left;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        vertical-align:middle;
+        }
+        th:first-child {
+        border-top-left-radius:3px;
+        }        
+        th:last-child {
+        border-top-right-radius:3px;
+        border-right:none;
+        }        
+        tr {
+        border-top: 1px solid #C1C3D1;
+        border-bottom: 1px solid #C1C3D1;
+        color:#666B85;
+        font-size:16px;
+        font-weight:normal;
+        text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+        }
+        tr:first-child {
+        border-top:none;
+        }
+        tr:last-child {
+        border-bottom:none;
+        }           
+        tr:hover td {
+        background:#f1f1ff;
+        }
+        /* tr:hover td:nth-child(1) {
+        background:#f2fbd0;
+        } */
+        #tableCalendar tr:hover td {
+        background:#ffffff;
+        }
+        tr:last-child td:first-child {
+        border-bottom-left-radius:3px;
+        }        
+        tr:last-child td:last-child {
+        border-bottom-right-radius:3px;
+        }        
+        td {
+        background:#FFFFFF;
+        padding:2px;
+        text-align:center;
+        vertical-align:middle;
+        color: #3b2727;
+        font-size:20px;
+        max-width: 100px;
+        overflow-x:auto;
+        border-right: 1px solid #C1C3D1;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body{
+            font-size: x-large;
+            font-family: Verdana;
+            background-image: url('../../icons/mandelbrot_image.jpg');
+        }
+        input{
+            background-color: rgb(255, 255, 255);
+            font-size: large;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            width: 200px;
+            text-align: center;
+            margin:10px;
+            box-shadow:  0px 0px 20px black;
+            transition: 1s;
+        }
+        input:hover{
+            background-color: rgb(190, 255, 179);
+        }
+        input[type=button]{
+            font-size: x-large;
+            font-family: Arial;
+        }
+        canvas{
+            box-shadow: 0px 0px 20px rgb(0, 26, 255);
+        }
+        .pointer:hover{
+            cursor: pointer;
+        }
+        .disable-select {
+            user-select:none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .enable-select {
+            user-select:text;
+            -webkit-user-select: text;
+            -khtml-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+        .flex_content{
+            background-color: rgba(24, 0, 158, 0.15);
+            box-shadow: 0px 0px 15px black;
+            margin-top: 10px;
+            padding: 10px 0px 20px 0px ;
+            width: 45%;
+            height: auto;
+            overflow: hidden;
+            transition: 1s;
+        }
+        .flex_content:hover{
+            background-color: rgba(24, 0, 158, 0.185);
+        }
+        #apply_button{
+            width: fit-content;
+            margin-bottom: 0px;
+            padding: 5px 10px;
+            margin-top: 10px;
+            background-color: black;
+            color: cornsilk;
+            transition: 1s;
+        }
+        #apply_button:hover{
+            background-color: rgb(230, 255, 222);
+            color: rgb(66, 53, 0);
+        }
+        .animateSVG{
+            animation: bounce_ 900ms;
+        }
+        .animateSVG:hover{
+            animation: bounce 600ms;
+        }
+        #tutorial_button{
+            position: fixed; 
+            top: 10px; 
+            left: 15px; 
+            font-size: 35px;
+            background-color: #ffffff34;
+            color: #1b1e24;
+            border: none;
+            outline: none;
+            box-shadow: 0px 0px 20px black;
+            transition:1500ms;
+            animation: bounce_ 900ms;
+        }
+        #tutorial_button:hover{   
+            background-color: #4756df34;
+            color: #ffffff;
+            box-shadow: 0px 0px 20px black;
+            transition:400ms;
+            animation: bounce 600ms;
+            cursor: pointer;
+        }
+        .popup-wrapper{
+            background: rgba(0, 0, 0, 0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            overflow-y: scroll;
+        }
+        .popup-wrapper-create{
+            background: rgba(0, 0, 0, 0.267);
+            position: absolute;
+            width: 100%;
+            height: 96%;
+            top: 0;
+            display: none;
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }
+
+        .popup {
+            font-family: Arial;
+            text-align: center;
+            width: fit-content;
+            max-width: 60vw;
+            margin: 7% auto;
+            padding: 50px;
+            background: white;
+            position: relative;
+            box-shadow: 0px 0px 1000px black;
+        }
+        .popup-create{
+            font-family: Arial;
+            text-align: center;
+            width: fit-content;
+            padding: 50px;
+            background: white;
+            position: absolute;
+            box-shadow: 0px 0px 1000px black;
+            margin: 7% auto;
+            max-width: none;
+            overflow-x: scroll;
+        }
+        .popup-close{
+            position: absolute;
+            font-size: xx-large;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            color: #3b2727;
+        }
+        .check_box{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: xx-large;
+        }
+        @keyframes bounce{
+            0%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+            25%{
+                transform: translate3d(0px, 2px, 0px);
+            }
+            75%{
+                transform: translate3d(0px, -1px, 0px);
+            }
+            100%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+        }
+        @keyframes bounce_{
+            0%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+            25%{
+                transform: translate3d(0px, 0.5px, 0px);
+            }
+            75%{
+                transform: translate3d(0px, -1px, 0px);
+            }
+            100%{
+                transform: translate3d(0px, 0px, 0px);
+            }
+        }
+               /* The slider itself */
+        .slider {
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 200px; /* Full-width */
+        height: 22px; /* Specified height */
+        background: #d3d3d3; /* Grey background */
+        outline: none; /* Remove outline */
+        opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+        -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+        transition: opacity .2s;
+        }
+
+        /* Mouse-over effects */
+        .slider:hover {
+        opacity: 1; /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        .slider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        width: 22px; /* Set a specific slider handle width */
+        height: 22px; /* Slider handle height */
+        background: #182975; /* Green background */
+        cursor: pointer; /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+        width: 22px; /* Set a specific slider handle width */
+        height: 22px; /* Slider handle height */
+        background: #182975; /* Green background */
+        cursor: pointer; /* Cursor on hover */
+        }
+        .slider{
+            border-radius: 0px;
+        }
+        .sections_titles{
+            font-size: large;
+        }
+    </style>
+</head>
+<body class="disable-select">
+    <!-- icon font : https://icons8.com/icons/set/pause -->
+        
+    <div style="text-align: center;">
+        <div style="display: flex; justify-content: space-evenly;
+        align-items: center;">
+            <div class="flex_content">    
+                <div style="display: flex; justify-content: space-evenly;
+                align-items: center;"> 
+                    <div>
+                        <span class="sections_titles">pX</span><br><input title="pX" style="width: 200px;" type="number" name="" id="pX_value">
+                    </div>
+                    <div>
+                        <span class="sections_titles">pY</span><br><input title="pY" style="width: 200px;" type="number" name="" id="pY_value"><br>
+                    </div>
+                </div>  
+                <div style="display: flex; justify-content: space-evenly;
+                align-items: center;"> 
+                    <div>
+                        <span class="sections_titles">Zoom </span><br><input title="Zoom" style="width: 200px;" type="number" name="" id="Zoom_value">
+                    </div>
+                    <div>  
+                        <span class="sections_titles" id="max_iter_show" style="cursor: pointer;" onclick="change_range_range()">Max Iter </span> <br>
+                        <input type="range" class="slider" min="1000" max="10000" step="1000" name="" oninput="change_max_iter()" id="max_iteration_range">
+                        </div>
+                </div>              
+                <div style="display: flex; justify-content: space-evenly;
+                align-items: center;"> 
+                    <div>
+                        <span class="sections_titles">Mandelbrot Coloring</span><br>                
+                        <input type="color"class="pointer" title="Mandelbrot Color" style="width: 70px;" name=""  id="inmandelbrot_color"> 
+                        <input type="color"class="pointer" title="Hue" style="width: 70px;"  name="" id="color_offset">        
+                    </div>
+                    <div>
+                        <span class="sections_titles" style="font-size: 30px;">Smooth Coloring</span> <br>
+                        <input title="Smooth Coloring" type="checkbox" class="check_box" name="Smooth Coloring" onchange="change_smooth_color_value()" id="smooth_coloring">
+                    </div>
+                </div>
+                <input type="button" title="Apply configuration" id="apply_button" class="pointer" onclick="update_XYZ()" value=" APPLY ">
+            </div>            
+            <div class="flex_content enable-select" id="scrollable_div" style="max-height: 400px; overflow: auto;">
+                <span>Points List</span><br>
+                <input id="apply_button" type="button" class="pointer" style="width: fit-content; margin-bottom: 20px;padding: 5px 0px; font-size: large;" onclick="copycode()" value="COPY POINTS CODE" title="Copy Points Code">
+                        <textarea name="" id="textareacode" oninput="check_code()" cols="53" rows="1" style="font-size: 23px; outline: none; border: none; box-shadow: 0px 0px 7px #1b1e24;" placeholder="Paste your zoom code here to load the set of points..." title="Paste zoom code"></textarea>
+                <table class="table-fill">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                pX                                
+                            </th>
+                            <th class="text-center">
+                                pY
+                            </th>
+                            <th class="text-center">
+                                Zoom 
+                            </th>
+                            <th class="text-center">
+                                Hue                                
+                            </th>
+                            <th class="text-center">
+                                Color
+                            </th>
+                            <th class="text-center">
+                                Smooth
+                            </th>
+                            <th class="text-center">
+                                Max Iter
+                            </th>
+                            <th class="text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="animateSVG" height="35px" width="35px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;fill:#f1f1ff;" xml:space="preserve">
+                                <title>Deletar</title>
+                                <g>
+                                    <g>
+                                        <path d="M436,60h-90V45c0-24.813-20.187-45-45-45h-90c-24.813,0-45,20.187-45,45v15H76c-24.813,0-45,20.187-45,45v30    c0,8.284,6.716,15,15,15h16.183L88.57,470.945c0.003,0.043,0.007,0.086,0.011,0.129C90.703,494.406,109.97,512,133.396,512    h245.207c23.427,0,42.693-17.594,44.815-40.926c0.004-0.043,0.008-0.086,0.011-0.129L449.817,150H466c8.284,0,15-6.716,15-15v-30    C481,80.187,460.813,60,436,60z M196,45c0-8.271,6.729-15,15-15h90c8.271,0,15,6.729,15,15v15H196V45z M393.537,468.408    c-0.729,7.753-7.142,13.592-14.934,13.592H133.396c-7.792,0-14.204-5.839-14.934-13.592L92.284,150h327.432L393.537,468.408z     M451,120h-15H76H61v-15c0-8.271,6.729-15,15-15h105h150h105c8.271,0,15,6.729,15,15V120z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M256,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C271,186.716,264.284,180,256,180z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M346,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C361,186.716,354.284,180,346,180z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M166,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C181,186.716,174.284,180,166,180z"/>
+                                    </g>
+                                </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>/g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="animateSVG" height="35px" width="35px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 477.873 477.873" style="enable-background:new 0 0 477.873 477.873; margin-right:-7px" xml:space="preserve">
+                                    <title>Editar</title>
+                                    <g>
+                                        <g>
+                                            <path d="M392.533,238.937c-9.426,0-17.067,7.641-17.067,17.067V426.67c0,9.426-7.641,17.067-17.067,17.067H51.2    c-9.426,0-17.067-7.641-17.067-17.067V85.337c0-9.426,7.641-17.067,17.067-17.067H256c9.426,0,17.067-7.641,17.067-17.067    S265.426,34.137,256,34.137H51.2C22.923,34.137,0,57.06,0,85.337V426.67c0,28.277,22.923,51.2,51.2,51.2h307.2    c28.277,0,51.2-22.923,51.2-51.2V256.003C409.6,246.578,401.959,238.937,392.533,238.937z"/>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path d="M458.742,19.142c-12.254-12.256-28.875-19.14-46.206-19.138c-17.341-0.05-33.979,6.846-46.199,19.149L141.534,243.937    c-1.865,1.879-3.272,4.163-4.113,6.673l-34.133,102.4c-2.979,8.943,1.856,18.607,10.799,21.585    c1.735,0.578,3.552,0.873,5.38,0.875c1.832-0.003,3.653-0.297,5.393-0.87l102.4-34.133c2.515-0.84,4.8-2.254,6.673-4.13    l224.802-224.802C484.25,86.023,484.253,44.657,458.742,19.142z"/>
+                                        </g>
+                                    </g><g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                    </svg>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        
+                    </tbody>
+                </table>                
+            </div>
+        </div>
+        
+        <input type="button" title="Add point to point list" class="pointer" style="width: fit-content;margin-top: 20px; padding: 5px 0px;" onclick="add_point()" value=" ADD POINT ">
+        <br>
+        <canvas style="cursor:zoom-in;"></canvas><br>
+        <br>
+        Click where you want to explore the Mandelbrot Set,<br>
+        left click to zoom in and right click to zoom out. <br>
+        Add points to be zoomed in and then open the configuration tab.<br>
+        <input type="button" title="Open Mandelbrot Configuration" class="pointer" style="width: fit-content; margin-bottom: 20px;padding: 5px 0px;" onclick="open_generator_config_window()" value=" OPEN MANDELBROT CONFIGURATION "><br>
+    </div>
+    <div id="editor_div" style="display: none; position: fixed;top: 0;bottom: 0;left: 0;right: 0;margin: auto; background-color: rgba(0, 1, 61, 0.596);">
+        <div style="margin: 5% auto auto auto; padding: 20px; width: 40%;background-color: rgba(255, 255, 255, 0.534); text-align: center;">                
+            <span class="sections_titles">pX </span><input title="pX" style="width: 400px;" type="number" name="" id="pX_value_editor"><br>
+            <span class="sections_titles">pY </span><input title="pY" style="width: 400px;" type="number" name="" id="pY_value_editor"><br>
+            <span class="sections_titles">Zoom </span><input title="Zoom" style="width: 400px;" type="number" name="" id="Zoom_value_editor"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            <span class="sections_titles">Mandelbrot coloring</span><br>
+            <input type="color"class="pointer" title="Mandelbrot Color" style="width: 150px;" name=""   id="inmandelbrot_color_editor"> 
+            <input type="color"class="pointer" title="Hue" style="width: 150px;"  name="" id="color_offset_editor">
+            <br>
+            <input type="checkbox" class="check_box" name="Smooth Coloring" id="smooth_coloring_editor">
+            <br>
+            <span class="sections_titles" id="max_iter_show_editor" style="cursor: pointer;" onclick="change_range_range_editor()">Max Iter </span> <br>
+            <input type="range" class="slider" min="1000" max="10000" step="1000" name="" oninput="change_max_iter_editor()" id="max_iteration_range_editor">
+            <br>          
+            <input type="button" title="Apply configuration" id="apply_button" class="pointer" onclick="update_XYZ_editor()" value=" APPLY "><br>
+            <input type="button" title="OK" id="save_point_button_editor" class="pointer" onclick="save_point()" value=" OK ">
+        </div>  
+    </div>
+    <button id="tutorial_button" onclick="open_tutorial()">
+        Tutorial
+    </button>
+    <div class="popup-wrapper" id="popup-tutorial">
+        <div class="popup" id="popupTUTORIAL">
+            <div class="popup-close">X</div>
+            <div class="popup-content">
+                <div style="margin: 10px auto 20px auto; text-align: center;">
+                    <span style="font-size: xx-large; color: darkblue; margin: 0 auto ">Mandelbrowser Tutorial <br> <span style="color:rgb(139, 0, 65);">Search</span> </span><br><br>
+                    
+                </div>
+                <div style="margin: 10px auto 20px auto; text-align: justify;">                   
+                    <span style="font-size: 25px; color: rgb(93, 37, 0); ">
+                        This is the Mandelbrot searcher. You can search for any point within the range of 10^14 zoom factor.
+                        You can also make images of the points you want, and make a zoom video with the images generated.
+                        <br><br>
+                        Navigate inside the Mandelbrot Set by clicking at any region you wanna explore (left click to zoom in and right click to zoom out).
+                        The zooming process may take some seconds to make all the calculations.                         
+                        If you find some point you want to make an image, click on 'ADD POINT' button to add it to the point list.
+                        <br><br>
+                        Every point have position, zoom, max iteration and coloring atributes whose define the point.
+<span style="font-size: 20px; word-wrap: break-word;">
+<br><br>
+    <span style="color: #18008f; font-size: 30px;">Position Atributes</span> 
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">pX</span> : the x coordinate of the point, it represents the Real value of the complex point.
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">pY</span> : the y coordinate of the point, it represents the Imaginary value of the complex point.
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">Zoom</span> : the zoom in the mandelbrot set. It defines the size of the distance unit around the point.
+
+<br><br>
+    <span style="color: #18008f; font-size: 30px;">Coloring Atributes</span> 
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">Hue</span> : the outside mandelbrot hue coloring.
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">Color</span> : the inside mandelbrot coloring.
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">Smooth Coloring</span> : defines the coloring type. There are 2 coloring types, the smooth coloring and the non smoth coloring. Experiment both types, they produce peculiar effects.
+
+<br><br>
+    <span style="color: #18008f; font-size: 30px;">Max Iteration</span> 
+<br>&nbsp;&nbsp;&nbsp;<span style="color: #000000;">Max Iter</span> : the maximum number of iterations that will be computed for each point.
+This atribute is the most important, the max iteration defines the coloring, the quality and also the time that will be spent to compute the images.
+Experiment with this atribute a lot, because it can produce a lot of interesting effects.
+</span>
+
+
+                        <br><br>
+                        If you are making a zoom video you have to add all the points that you want the observer to pass through. 
+                        The images will be generated acording to the point list. 
+                        For exemple, point list = [A, B, C, ...]; 
+                        The observer will start on point A and go to point B, once it get to point B it will go to point C and so on.
+                        If point B's zoom is greater than point A's zoom, the observer will zoom in, otherwise it will zoom out.
+                        All points have position, zoom, color, hue, smooth coloring and max iteration atributes. If point A has a hue of 
+                        <span style="color: #4622f5;">#4622f5</span> and point B has a hue of 
+                        <span style="color: #973517;">#973517</span>
+                         during the zoom from A to B the hue will be gradualy changed. 
+                         The same works for the other atributes except smooth coloring. 
+                         With this software you can explore 3 different ways of changing the images: you can travel from a point to another with different zooms; travel with the same zoom but different hues; 
+                         and travel with the same zoom same hue but different max iteration. Those produce interesting effects on the image generating process.
+                         All the points are editable and deletable. 
+                         You may also see a point by clicking on it at the point list.
+
+                        <br><br>
+                        You can also copy the point list to future usage by clicking at 'COPY POINTS CODE'. 
+                        When you copy it the list code will be at your transfer area (press control + v to paste it).
+                        This code is a javascript array with all the points as objects.
+                        The code is important, because you can copy it and paste it at the text area below the 'COPY POINTS CODE' button. 
+                        By doing that the point list will be loaded into the list. This code also works for the configuration tab, you can load the points there.
+                        
+                        <br><br>
+            
+                        Once all the points are ready you can go to the configuration tab. To do that scroll down and click on 'OPEN MANDELBROT CONFIGURATION'. 
+                        There, you will configure the file name, text, zoom orientation and other things.
+                      
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/init_variables.js"></script>
+    <script src="./scripts/functions.js"></script>
+</body>
+</html> 
