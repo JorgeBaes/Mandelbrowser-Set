@@ -1,3 +1,6 @@
+const standart_inside_color = "#27196b"
+const standart_hue = "#94f8ff"
+
 const width_pixel = 620
 const canvas = document.querySelector('canvas')
 const resol = 0.5625
@@ -9,7 +12,7 @@ c.textAlign = 'center'
 const cH = canvas.height
 const cW = canvas.width 
 let zoom = 1
-let max_iteration = 5000
+let max_iteration = 1000
 document.querySelector('#max_iteration_range').value = max_iteration
 document.querySelector('#max_iter_show').innerText = `Max Iter ${max_iteration}`
 let zoom_factor = (1.008)**115
@@ -28,6 +31,7 @@ let points = [
         max_iteration:5000
     }
 ]
+let fractal = 'Mandelbrot'
 let inmandelbrot_color = `#000000`
 let color_offset = 330
 const alfa = 4*cH/cW

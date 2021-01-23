@@ -208,8 +208,8 @@ function f(x, y, cx, cy) {
     return { x: x ** 2 - y ** 2 + cx, y: 2.0 * x * y + cy }
 }
 function in_main_cardioid(x,y){
-    const teta = Math.atan(Math.abs(y)/x)
-    return x**2+y**2 <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
+    const teta = Math.atan2(Math.abs(y),x)
+    return (x**2+y**2) <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
 }
 function inMandelbrot(x, y) {    
     if(in_main_cardioid(x,y)){

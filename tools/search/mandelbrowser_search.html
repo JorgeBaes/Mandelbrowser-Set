@@ -303,6 +303,20 @@
         .sections_titles{
             font-size: large;
         }
+        select{
+            background-color: rgb(255, 255, 255);
+            font-size: x-large;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            text-align-last: center;
+            margin:10px;
+            box-shadow:  0px 0px 20px black;
+            transition: 1s;
+        }
+        select:hover{
+            background-color: rgb(190, 255, 179);
+        }
     </style>
 </head>
 <body class="disable-select">
@@ -312,6 +326,11 @@
         <div style="display: flex; justify-content: space-evenly;
         align-items: center;">
             <div class="flex_content">    
+                <select name="" id="fractal" onchange="change_fractal()">
+                    <option value="Mandelbrot">Mandelbrot</option>
+                    <option value="Julia Set">Julia Set</option>
+                    <option value="Burning Ship">Burning Ship</option>
+                </select>
                 <div style="display: flex; justify-content: space-evenly;
                 align-items: center;"> 
                     <div>

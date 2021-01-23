@@ -375,7 +375,6 @@ function max_file_counter_finder(point_list){
   return max_file_counter_aux + point_list.length
 }
 max_file_counter = max_file_counter_finder(points)
-atribute_points()
 if(points.length == 1){
   enable_zoom = false
 }else{
@@ -383,6 +382,7 @@ if(points.length == 1){
     update_values()
   }
 }
+atribute_points()
 
 
 

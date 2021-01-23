@@ -36,7 +36,6 @@ const editSVG = `
 	</g>
 </g><g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
 </svg>`
-
 // Some constants used with smoothColor
 var logBase = 1.0 / Math.log(2.0);
 var logHalfBase = Math.log(0.5)*logBase;
@@ -80,16 +79,27 @@ function addRGB(v, w)
   v[3] += w[3];
   return v;
 }
-function f(x, y, cx, cy) {
+const julia_point = { x: -0.47287874088227777 , y: 0.6242402553543369 }
+function f_mandelbrot(x, y, cx, cy) {
     return { x: x ** 2 - y ** 2 + cx, y: 2.0 * x * y + cy }
 }
-function in_main_cardioid(x,y){
-    const teta = Math.atan(Math.abs(y)/x)
-    return x**2+y**2 <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
+function f_julia(x, y) {
+    return { x: x ** 2 - y ** 2 + julia_point.x, y: 2.0 * x * y + julia_point.y }
 }
-function inMandelbrot(x, y) {    
-    if(in_main_cardioid(x,y)){
-        return inmandelbrot_color
+function f_burning_ship(x, y, cx, cy) {
+    return { x: x ** 2 - y ** 2 - cx, y: (Math.abs(2*y*x) -cy) }
+}
+
+
+function in_main_cardioid(x,y){
+    const teta = Math.atan2(Math.abs(y),x)
+    return (x**2+y**2) <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
+}
+function inMandelbrot(x, y) { 
+    if(fractal == 'Mandelbrot'){
+        if(in_main_cardioid(x,y)){
+            return inmandelbrot_color
+        } 
     }
     const cy = y    
     const cx = x
@@ -99,7 +109,14 @@ function inMandelbrot(x, y) {
     let yOld = 0
     let period = 0
     for (let i = 0; i < max_iteration; i++) {
-        const vet = f(zx, zy, cx, cy)
+        let vet
+        if(fractal == 'Mandelbrot'){
+            vet = f_mandelbrot(zx, zy, cx, cy)
+        }else if(fractal == 'Burning Ship'){
+            vet = f_burning_ship(zx, zy, cx, cy)
+        }else if(fractal == 'Julia Set'){
+            vet = f_julia(zx, zy)
+        }
         zx = vet.x
         zy = vet.y
         if (zx ** 2 + zy ** 2 >= 4) {  
@@ -227,9 +244,7 @@ function scrollToBottom (id) {
     var div = document.getElementById(id);
     div.scrollTop = div.scrollHeight ;
  }
-
 let point_editing = null
-
 function update_point_list(){
     const table = document.querySelector('.table-hover')
     table.innerHTML = ''
@@ -306,7 +321,6 @@ function save_point(){
     document.querySelector('#editor_div').style.display = 'none'
     // update_XYZ_editor()
     update_point_list()
-
 }
 function go_to_point(index){
     document.querySelector('#pX_value').value = points[index].pX
@@ -457,10 +471,7 @@ document.querySelector('#pX_value').value = pX
 document.querySelector('#pY_value').value = pY
 document.querySelector('#Zoom_value').value = zoom
 update_point_list()
-
-
 ////
-
 window.addEventListener('mousemove', (event) => {
     
     if(event.clientY < window.innerHeight*0.3){
@@ -484,7 +495,6 @@ poputTutorial.addEventListener('click', event => {
 function showTutorial() {
     poputTutorial.style.display = 'block'
 }
-
 function change_max_iter(){
     max_iteration = document.querySelector('#max_iteration_range').value
     document.querySelector('#max_iter_show').innerText = `Max Iter ${max_iteration}`
@@ -506,12 +516,13 @@ function change_range_range(){
         document.querySelector('#max_iteration_range').max = 1000
         document.querySelector('#max_iteration_range').min = 50
         document.querySelector('#max_iteration_range').step = 50
-        document.querySelector('#max_iteration_range').value = 0
+        document.querySelector('#max_iteration_range').value = 100        
     }else if (current_max_value == 1000){
         document.querySelector('#max_iteration_range').max = 10000
         document.querySelector('#max_iteration_range').min = 1000
         document.querySelector('#max_iteration_range').step = 1000
     }
+    max_iteration = document.querySelector('#max_iteration_range').value
     document.querySelector('#max_iter_show').innerText = `Max Iter ${document.querySelector('#max_iteration_range').value}`
 }
 function change_range_range_editor(){
@@ -536,4 +547,30 @@ function change_range_range_editor(){
     }
     document.querySelector('#max_iter_show_editor').innerText = `Max Iter ${document.querySelector('#max_iteration_range_editor').value}`
 
+}
+function change_fractal(){
+    fractal = document.querySelector('#fractal').value
+    pX = 0
+    pY = 0
+    if(fractal == 'Mandelbrot' || fractal == 'Julia Set'){
+        zoom = 1
+    }else if(fractal == 'Burning Ship'){
+        zoom = 0.6
+    }
+    document.querySelector('#max_iteration_range').max = 1000
+    document.querySelector('#max_iteration_range').min = 50
+    document.querySelector('#max_iteration_range').step = 50
+    document.querySelector('#max_iteration_range').value = 500
+    max_iteration = document.querySelector('#max_iteration_range').value
+    document.querySelector('#max_iter_show').innerText = `Max Iter ${document.querySelector('#max_iteration_range').value}`
+    inmandelbrot_color = standart_inside_color
+    color_offset = standart_hue
+    smooth_coloring = false
+    document.querySelector('#smooth_coloring').checked = smooth_coloring
+    document.querySelector('#inmandelbrot_color').value = inmandelbrot_color
+    document.querySelector('#color_offset').value = color_offset
+    document.querySelector('#pX_value').value = pX
+    document.querySelector('#pY_value').value = pY
+    document.querySelector('#Zoom_value').value = zoom
+    update_XYZ()
 }
