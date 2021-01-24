@@ -23,8 +23,35 @@ const garbageSVG = `
 	</g>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>/g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>`
 
-let hash = window.location.hash.slice(2)
+
+
+function replace_all(string,c,r){
+    let s = string
+    while(s.indexOf(c) != -1){
+        s = s.replace(c,r)
+    }
+    return s
+}
+
+let hash_code = window.location.hash.slice(1)
+hash_code = replace_all(hash_code,'%22','"')
+hash_code = replace_all(hash_code,'%20',' ') 
+
+let hash = hash_code.slice(hash_code.indexOf('list_of_points:')+16,hash_code.indexOf(']',hash_code.indexOf('list_of_points:')+16))
 let points = []
+
+const julia_point = { x: -0.47287874088227777 , y: 0.6242402553543369 }
+let fractal = 'Mandelbrot'
+
+if(hash_code.indexOf('fractal:') != -1){
+    fractal = hash_code.slice(hash_code.indexOf('fractal:')+9,hash_code.indexOf(',',hash_code.indexOf('fractal:')+9)-1)
+}
+if(hash_code.indexOf('cX:') != -1){
+    julia_point.x = parseFloat(hash_code.slice(hash_code.indexOf('cX:')+3,hash_code.indexOf(',',hash_code.indexOf('cX')+3)))
+}
+if(hash_code.indexOf('cY:') != -1){
+    julia_point.y = parseFloat(hash_code.slice(hash_code.indexOf('cY:')+3,hash_code.indexOf(',',hash_code.indexOf('cY')+3)))
+}
 
 function get_point1(){
     const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null,max_iteration:null}
@@ -204,16 +231,25 @@ function addRGB(v, w)
   v[3] += w[3];
   return v;
 }
-function f(x, y, cx, cy) {
+function f_mandelbrot(x, y, cx, cy) {
     return { x: x ** 2 - y ** 2 + cx, y: 2.0 * x * y + cy }
 }
+function f_julia(x, y) {
+    return { x: x ** 2 - y ** 2 + julia_point.x, y: 2.0 * x * y + julia_point.y }
+}
+function f_burning_ship(x, y, cx, cy) {
+    return { x: x ** 2 - y ** 2 - cx, y: (Math.abs(2*y*x) -cy) }
+}
+
 function in_main_cardioid(x,y){
     const teta = Math.atan2(Math.abs(y),x)
     return (x**2+y**2) <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
 }
 function inMandelbrot(x, y) {    
-    if(in_main_cardioid(x,y)){
-        return inmandelbrot_color
+    if(fractal == 'Mandelbrot'){
+        if(in_main_cardioid(x,y)){
+            return inmandelbrot_color
+        } 
     }
     const cy = y    
     const cx = x
@@ -223,7 +259,14 @@ function inMandelbrot(x, y) {
     let yOld = 0
     let period = 0
     for (let i = 0; i < max_iteration; i++) {
-        const vet = f(zx, zy, cx, cy)
+        let vet
+        if(fractal == 'Mandelbrot'){
+            vet = f_mandelbrot(zx, zy, cx, cy)
+        }else if(fractal == 'Burning Ship'){
+            vet = f_burning_ship(zx, zy, cx, cy)
+        }else if(fractal == 'Julia Set'){
+            vet = f_julia(zx, zy)
+        }
         zx = vet.x
         zy = vet.y
         if (zx ** 2 + zy ** 2 >= 4) {
@@ -666,7 +709,7 @@ atribute_points()
 
 function open_generator(){
     converted_font_size = font_size/width_pixel*width_pixel_zoom
-    const hash_string_2 = `file_counter:${file_counter},width:${width_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size}`
+    const hash_string_2 = `fractal:'${fractal}',file_counter:${file_counter},width:${width_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size},cX:${julia_point.x},cY:${julia_point.y}`
 
     for(let i in points_list){
         points_list[i].hue = hslToHex(points_list[i].hue,100,79)
@@ -691,7 +734,7 @@ function open_generator(){
 }
 function copycode(){
     converted_font_size = font_size/width_pixel*width_pixel_zoom
-    const hash_string_2 = `file_counter:${file_counter},width:${width_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size}`
+    const hash_string_2 = `fractal:'${fractal}',file_counter:${file_counter},width:${width_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size},cX:${julia_point.x},cY:${julia_point.y}`
 
     for(let i in points_list){
         points_list[i].hue = hslToHex(points_list[i].hue,100,79)
@@ -756,6 +799,16 @@ function check_code(){
         candidate_code = candidate_code.slice(1)
     }
     candidate_code = replace_all(candidate_code,'%22','"')
+    candidate_code = replace_all(candidate_code,'%20',' ')
+    if(candidate_code.indexOf('fractal:') != -1){
+        fractal = candidate_code.slice(candidate_code.indexOf('fractal:')+9,candidate_code.indexOf(',',candidate_code.indexOf('fractal:')+9)-1)
+    }
+    if(candidate_code.indexOf('cX:') != -1){
+        julia_point.x = parseFloat(candidate_code.slice(candidate_code.indexOf('cX:')+3,candidate_code.indexOf(',',candidate_code.indexOf('cX')+3)))
+    }
+    if(candidate_code.indexOf('cY:') != -1){
+        julia_point.y = parseFloat(candidate_code.slice(candidate_code.indexOf('cY:')+3,candidate_code.indexOf(',',candidate_code.indexOf('cY')+3)))
+    }
     let candidate_points = []
     let possible_string = true
 

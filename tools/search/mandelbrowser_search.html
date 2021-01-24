@@ -305,7 +305,8 @@
         }
         select{
             background-color: rgb(255, 255, 255);
-            font-size: x-large;
+            color: rgb(0, 3, 184);
+            font-size: large;
             outline: none;
             border: none;
             border-radius: 20px;
@@ -317,6 +318,10 @@
         select:hover{
             background-color: rgb(190, 255, 179);
         }
+        .julia_set_config{
+            background-color: rgba(255, 255, 255, 0.335);
+            color: rgb(0, 0, 0);
+        }
     </style>
 </head>
 <body class="disable-select">
@@ -326,11 +331,20 @@
         <div style="display: flex; justify-content: space-evenly;
         align-items: center;">
             <div class="flex_content">    
-                <select name="" id="fractal" onchange="change_fractal()">
-                    <option value="Mandelbrot">Mandelbrot</option>
-                    <option value="Julia Set">Julia Set</option>
-                    <option value="Burning Ship">Burning Ship</option>
-                </select>
+                <div class="julia_set_config" style="display: flex; justify-content: space-evenly;
+                align-items: center;">                 
+                    <div>
+                        <span class="sections_titles" id="julia_pX_text" style="color: rgb(0, 3, 184); display: none;">cX</span><br><input title="pX" style="width: 150px;display: none;" type="number" name="" id="pX_julia_value" onchange="update_julia_values()">
+                    </div>
+                    <select name="" id="fractal" onchange="change_fractal()">
+                        <option value="Mandelbrot">Mandelbrot</option>
+                        <option value="Julia Set">Julia Set</option>
+                        <option value="Burning Ship">Burning Ship</option>
+                    </select>
+                    <div>
+                        <span class="sections_titles" id="julia_pY_text" style="color: rgb(0, 3, 184); display: none;">cY</span><br><input title="pY" style="width: 150px;display: none;" type="number" name="" id="pY_julia_value" onchange="update_julia_values()">
+                    </div>
+                </div>  
                 <div style="display: flex; justify-content: space-evenly;
                 align-items: center;"> 
                     <div>

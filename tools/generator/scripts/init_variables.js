@@ -20,6 +20,9 @@ let enable_zoom = mandelbrot.enable_zoom
 let stop_zooming = false
 let smooth_coloring = false
 
+const julia_point = { x: -0.47287874088227777 , y: 0.6242402553543369 }
+let fractal = 'Mandelbrot'
+
 
 function hexToHSLIndex(H) {
     // Convert hex to RGB first
@@ -105,7 +108,7 @@ if(window.location.hash.length>2){
     hash = hash.slice(1)
   }
   hash = replace_all(hash,'%22','"')
- 
+  hash = replace_all(hash,'%20',' ')
   function get_point(hash){
     const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null}
     point.pX = parseFloat(hash.slice(4,hash.indexOf(',')))
@@ -236,6 +239,17 @@ if(window.location.hash.length>2){
       file_counter = 1
     }
   }
+
+  if(hashCode.indexOf('fractal:') != -1){
+    fractal = hashCode.slice(hashCode.indexOf('fractal:')+9,hashCode.indexOf(',',hashCode.indexOf('fractal:')+9)-1)
+  }
+  if(hashCode.indexOf('cX:') != -1){
+      julia_point.x = parseFloat(hashCode.slice(hashCode.indexOf('cX:')+3,hashCode.indexOf(',',hashCode.indexOf('cX')+3)))
+  }
+  if(hashCode.indexOf('cY:') != -1){
+      julia_point.y = parseFloat(hashCode.slice(hashCode.indexOf('cY:')+3,hashCode.indexOf(',',hashCode.indexOf('cY')+3)))
+  }
+
 }
 
 for(let i in points){
@@ -375,6 +389,7 @@ function max_file_counter_finder(point_list){
   return max_file_counter_aux + point_list.length
 }
 max_file_counter = max_file_counter_finder(points)
+atribute_points()
 if(points.length == 1){
   enable_zoom = false
 }else{
@@ -382,7 +397,6 @@ if(points.length == 1){
     update_values()
   }
 }
-atribute_points()
 
 
 

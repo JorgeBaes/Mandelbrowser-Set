@@ -48,9 +48,8 @@ function set_dx_dy(){
         point_offsetY = cH
     }
 }
-function f(x, y, cx, cy) {
-    return { x: x ** 2 - y ** 2 + cx, y: 2.0 * x * y + cy }
-}
+
+
 // Some constants used with smoothColor
 const logBase = 1.0 / Math.log(2.0);
 const logHalfBase = Math.log(0.5)*logBase;
@@ -94,13 +93,25 @@ function addRGB(v, w)
   v[3] += w[3];
   return v;
 }
+
+function f_mandelbrot(x, y, cx, cy) {
+    return { x: x ** 2 - y ** 2 + cx, y: 2.0 * x * y + cy }
+}
+function f_julia(x, y) {
+    return { x: x ** 2 - y ** 2 + julia_point.x, y: 2.0 * x * y + julia_point.y }
+}
+function f_burning_ship(x, y, cx, cy) {
+    return { x: x ** 2 - y ** 2 - cx, y: (Math.abs(2*y*x) -cy) }
+}
 function in_main_cardioid(x,y){
-    const teta = Math.atan(Math.abs(y)/x)
-    return x**2+y**2 <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
+    const teta = Math.atan2(Math.abs(y),x)
+    return (x**2+y**2) <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
 }
 function inMandelbrot(x, y) {    
-    if(in_main_cardioid(x,y)){
-        return inmandelbrot_color
+    if(fractal == 'Mandelbrot'){
+        if(in_main_cardioid(x,y)){
+            return inmandelbrot_color
+        } 
     }
     const cy = y    
     const cx = x
@@ -110,7 +121,14 @@ function inMandelbrot(x, y) {
     let yOld = 0
     let period = 0
     for (let i = 0; i < max_iteration; i++) {
-        const vet = f(zx, zy, cx, cy)
+        let vet
+        if(fractal == 'Mandelbrot'){
+            vet = f_mandelbrot(zx, zy, cx, cy)
+        }else if(fractal == 'Burning Ship'){
+            vet = f_burning_ship(zx, zy, cx, cy)
+        }else if(fractal == 'Julia Set'){
+            vet = f_julia(zx, zy)
+        }
         zx = vet.x
         zy = vet.y
         if (zx ** 2 + zy ** 2 >= 4) {            

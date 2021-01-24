@@ -80,6 +80,8 @@ function addRGB(v, w)
   return v;
 }
 const julia_point = { x: -0.47287874088227777 , y: 0.6242402553543369 }
+document.querySelector('#pX_julia_value').value = julia_point.x
+document.querySelector('#pY_julia_value').value = julia_point.y
 function f_mandelbrot(x, y, cx, cy) {
     return { x: x ** 2 - y ** 2 + cx, y: 2.0 * x * y + cy }
 }
@@ -346,7 +348,7 @@ function open_generator_config_window(){
         hash_string += `smooth_coloring:${smooth_coloring},`
         hash_string += `max_iteration:${max_iteration}},`
     }
-    hash_string = hash_string.slice(0,hash_string.length-1) + ']'
+    hash_string =  `fractal:'${fractal}',cX:${julia_point.x},cY:${julia_point.y},list_of_points:`+hash_string.slice(0,hash_string.length-1) + ']'
     const hash = `#${hash_string}`
     window.open(`../settings/mandelbrowser_settings.html${hash}`,'blank')
 }
@@ -401,7 +403,7 @@ function copycode(){
         hash_string += `smooth_coloring:${smooth_coloring},`
         hash_string += `max_iteration:${max_iteration}},`
     }
-    hash_string = 'list_of_points:'+hash_string.slice(0,hash_string.length-1) + ']'
+    hash_string = `fractal:'${fractal}',cX:${julia_point.x},cY:${julia_point.y},list_of_points:`+hash_string.slice(0,hash_string.length-1) + ']'
     let el = document.createElement('textarea')
     el.value = hash_string
     el.setAttribute('readonly', '')
@@ -431,6 +433,15 @@ function get_point(hash){
 }
 function check_code(){
     let code = document.querySelector('#textareacode').value
+    if(code.indexOf('fractal:') != -1){
+        fractal = code.slice(code.indexOf('fractal:')+9,code.indexOf(',',code.indexOf('fractal:')+9)-1)
+    }
+    if(code.indexOf('cX:') != -1){
+        julia_point.x = parseFloat(code.slice(code.indexOf('cX:')+3,code.indexOf(',',code.indexOf('cX')+3)))
+    }
+    if(code.indexOf('cY:') != -1){
+        julia_point.y = parseFloat(code.slice(code.indexOf('cY:')+3,code.indexOf(',',code.indexOf('cY')+3)))
+    }
     let candidate_code = code.slice(code.indexOf('list_of_points:')+'list_of_points:'.length+1,code.indexOf(']',code.indexOf('list_of_points:')+'list_of_points:'.length))
         
     while(candidate_code[0] == ' '){
@@ -455,6 +466,21 @@ function check_code(){
         update_point_list()
     }
     document.querySelector('#textareacode').value = ''
+    document.querySelector('#pX_julia_value').value = julia_point.x
+    document.querySelector('#pY_julia_value').value = julia_point.y
+    document.querySelector('#fractal').value = fractal
+    if(fractal == 'Julia Set'){
+        document.querySelector('#pY_julia_value').style.display = 'block'
+        document.querySelector('#pX_julia_value').style.display = 'block'
+        document.querySelector('#julia_pY_text').style.display = 'inline'
+        document.querySelector('#julia_pX_text').style.display = 'inline'
+    }else{
+        document.querySelector('#pY_julia_value').style.display = 'none'
+        document.querySelector('#pX_julia_value').style.display = 'none'
+        document.querySelector('#julia_pY_text').style.display = 'none'
+        document.querySelector('#julia_pX_text').style.display = 'none'
+    }
+    update_XYZ()
 }
 function change_smooth_color_value(){
     smooth_coloring = document.querySelector('#smooth_coloring').checked
@@ -546,7 +572,6 @@ function change_range_range_editor(){
         document.querySelector('#max_iteration_range_editor').step = 1000
     }
     document.querySelector('#max_iter_show_editor').innerText = `Max Iter ${document.querySelector('#max_iteration_range_editor').value}`
-
 }
 function change_fractal(){
     fractal = document.querySelector('#fractal').value
@@ -572,5 +597,20 @@ function change_fractal(){
     document.querySelector('#pX_value').value = pX
     document.querySelector('#pY_value').value = pY
     document.querySelector('#Zoom_value').value = zoom
+    if(fractal == 'Julia Set'){
+        document.querySelector('#pY_julia_value').style.display = 'block'
+        document.querySelector('#pX_julia_value').style.display = 'block'
+        document.querySelector('#julia_pY_text').style.display = 'inline'
+        document.querySelector('#julia_pX_text').style.display = 'inline'
+    }else{
+        document.querySelector('#pY_julia_value').style.display = 'none'
+        document.querySelector('#pX_julia_value').style.display = 'none'
+        document.querySelector('#julia_pY_text').style.display = 'none'
+        document.querySelector('#julia_pX_text').style.display = 'none'
+    }
     update_XYZ()
+}
+function update_julia_values(){
+    julia_point.x = parseFloat(document.querySelector('#pX_julia_value').value)
+    julia_point.y = parseFloat(document.querySelector('#pY_julia_value').value)
 }
