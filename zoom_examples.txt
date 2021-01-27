@@ -6,6 +6,7 @@ COPY THE MANDELBROWSER CODE AND PASTE IT ON THE SETTINGS TAB
 DEEP PURPLE:
     MANDELBROWSER CODE:        
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'deep_purple',
@@ -18,6 +19,8 @@ DEEP PURPLE:
             enable_text:false,
             text_color:'#002688',
             text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:5000},
@@ -54,6 +57,7 @@ DEEP PURPLE:
 Five Degrees of Mandelbrot:
     MANDELBROWSER CODE:     
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'five_degrees_of_mandelbrot',
@@ -66,6 +70,8 @@ Five Degrees of Mandelbrot:
             enable_text:true,
             text_color:'#000000',
             text_size:18,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
@@ -85,6 +91,7 @@ Five Degrees of Mandelbrot:
 Coloring Change:
     MANDELBROWSER CODE:
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'coloring_change',
@@ -96,6 +103,8 @@ Coloring Change:
             point_size:2,enable_text:false,
             text_color:'#000000',
             text_size:18,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
@@ -119,6 +128,7 @@ Coloring Change:
 Spider Web:
     MANDELBROWSER CODE:
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'spider_web',
@@ -131,6 +141,8 @@ Spider Web:
             enable_text:true,
             text_color:'#002375',
             text_size:15,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
@@ -146,6 +158,7 @@ Spider Web:
 Spiral:
     MANDELBROWSER CODE:
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'spiral',
@@ -158,6 +171,8 @@ Spiral:
             enable_text:false,
             text_color:'#002375',
             text_size:15,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:50000},
@@ -181,6 +196,7 @@ Spiral:
 Net:
     MANDELBROWSER CODE:
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'net',
@@ -193,6 +209,8 @@ Net:
             enable_text:false,
             text_color:'#002688',
             text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:0,pY:0,zoom:0.4,hue:'#c994ff',inmandelbrot_color:'#bbff00',smooth_coloring:false,max_iteration:50000},
@@ -219,6 +237,7 @@ Net:
 CROSSGUARD GIF:
     MANDELBROWSER CODE:
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
             file_name:'crossguard',
@@ -230,7 +249,9 @@ CROSSGUARD GIF:
             point_size:2,
             enable_text:false,
             text_color:'#002688',
-            text_size:27,
+            text_size:27,            
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:-1.2528783713612426,pY:0.024222274742975346,zoom:3816.3722854816133,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
@@ -245,6 +266,7 @@ CROSSGUARD GIF:
 HURRICANE GIF:
     MANDELBROWSER CODE:
         {
+            fractal:'Mandelbrot',
             file_counter:1,
             width:720,
             file_name:'hurricane',
@@ -256,7 +278,9 @@ HURRICANE GIF:
             point_size:2,
             enable_text:false,
             text_color:'#002688',
-            text_size:18,
+            text_size:18,            
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
             list_of_points:
             [
                 {pX:-0.762343268653735,pY:0.0905546228883266,zoom:149106.1318287853,hue:'#b9ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:20000},
@@ -312,3 +336,98 @@ JULIA FLOWER:
         From 1 to 1653
 ---------------------------
 
+
+---------------------------
+FACES:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Burning Ship',
+            file_counter:1,
+            width:1080,
+            file_name:'faces',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:5000},
+                {pX:1.911290322580646,pY:0,zoom:1.0000487789708417,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:1000},
+                {pX:1.7054968674249538,pY:0.015482989848356554,zoom:6.25091465031753,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:1000},
+                {pX:1.7054968674249538,pY:0.015482989848356554,zoom:6.25091465031753,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:50},
+                {pX:1.7054968674249538,pY:0.015482989848356554,zoom:6.25091465031753,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:100},
+                {pX:1.7054968674249538,pY:0.015482989848356554,zoom:6.25091465031753,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:200},
+                {pX:1.6729854962384523,pY:0.009290347717594377,zoom:15.628048908752477,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:500},
+                {pX:1.6265429456775555,pY:0.03818793473326342,zoom:39.07202807223627,hue:'#94ffe4',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:500},
+                {pX:1.6306875105184109,pY:0.03775861687465497,zoom:244.22399969899936,hue:'#94ffe4',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:800},
+                {pX:1.6305210819378728,pY:0.03748388540262195,zoom:1526.5489141926455,hue:'#d4ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:800},
+                {pX:1.6301259462056423,pY:0.037381615608365046,zoom:9541.86152996778,hue:'#cfff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:1.6301040008357288,pY:0.037376558446158704,zoom:149113.4050724421,hue:'#cfff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:1.6301043946185672,pY:0.037376921896450865,zoom:932049.7039007312,hue:'#cfff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:1.6301031798138474,pY:0.03737667408912045,zoom:5825878.968556862,hue:'#ff94fb',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:1.6301031442693255,pY:0.03737667913909025,zoom:91042680.48882218,hue:'#94fff3',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:1.6301031555791448,pY:0.03737668032960994,zoom:569072266.5122615,hue:'#94fff3',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:1.630103155754869,pY:0.03737668039082659,zoom:3557048658.6580944,hue:'#94ffa9',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:1.6301031554184178,pY:0.03737668034366898,zoom:8893055419.577242,hue:'#e2ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:1.6301031553641965,pY:0.037376680343204655,zoom:138974326020.80273,hue:'#94e4ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:1.6301031553589738,pY:0.03737668034297254,zoom:347452762613.4986,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:1.6301031553581058,pY:0.03737668034325567,zoom:5429743910285.043,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:1.6301031553580492,pY:0.037376680343264274,zoom:84852164390682.92,hue:'#d494ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000}
+            ]
+        }
+    Range of images:
+        From 1 to 1653
+---------------------------
+
+---------------------------
+MANDELBOT:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            file_name:'mandelbot',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.4,hue:'#b0ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:50},
+                {pX:0,pY:0,zoom:0.9,hue:'#b0ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:100},
+                {pX:0.45272105023,pY:0.396494224267,zoom:2,hue:'#b0ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:300},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20,hue:'#cf94ff',inmandelbrot_color:'#0fffaf',smooth_coloring:true,max_iteration:400},
+                {pX:0.45272105023,pY:0.396494224267,zoom:200,hue:'#a6ff94',inmandelbrot_color:'#630fff',smooth_coloring:true,max_iteration:400},
+                {pX:0.45272105023,pY:0.396494224267,zoom:2000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:800},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:200000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:2000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:3000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:4000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:200000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:5000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:2000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:4000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:2000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:6000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:8000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:12000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:14000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:20000},
+                {pX:0.45272105023,pY:0.396494224267,zoom:20000000000,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:30000}
+            ]
+        }
+    Range of images:
+        From 1 to 3702
+---------------------------

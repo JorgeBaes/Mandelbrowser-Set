@@ -101,51 +101,56 @@ function replace_all(string,c,r){
       s = s.replace(c,r)
   }
   return s
-} 
-if(window.location.hash.length>2){
-  let hash = window.location.hash.slice(2)
-  while(hash[0] == ' '){
-    hash = hash.slice(1)
-  }
-  hash = replace_all(hash,'%22','"')
-  hash = replace_all(hash,'%20',' ')
-  function get_point(hash){
-    const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null}
-    point.pX = parseFloat(hash.slice(4,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.pY = parseFloat(hash.slice(3,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.zoom = parseFloat(hash.slice(5,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.hue = String(hash.slice(5,hash.indexOf(',')-1))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.inmandelbrot_color = String(hash.slice(20,hash.indexOf(',')-1))
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.smooth_coloring =  String(hash.slice(16,20)) == 'true'
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.max_iteration = parseInt(hash.slice(hash.indexOf('max_iteration:')+14,hash.indexOf('}')))    
-    hash = hash.slice((hash.indexOf(',')==-1?hash.indexOf('}')-1:hash.indexOf('pX'))-1) 
-    return [point,hash]
 }
-  
-  points = []
-  let possible_string = true
-  let hash_1 = hash.slice(hash.indexOf('list_of_points:')+'list_of_points:'.length,hash.indexOf(']',hash.indexOf('list_of_points:')+'list_of_points:'.length))
-  hash_1 = hash_1.slice(hash_1.indexOf('pX')-1)
-  points = []
-  while(possible_string){
-      const candidate = get_point(hash_1)
-      possible_string = !isNaN(candidate[0].pX) && !isNaN(candidate[0].pX) && !isNaN(candidate[0].zoom) && typeof candidate[0].hue == typeof 'as'&& typeof candidate[0].inmandelbrot_color == typeof 'as'
-    
-      if(possible_string){
-          hash_1 = candidate[1]
-          points.push(candidate[0])            
-      }else{
-          possible_string = false
-      }
+function return_value(name,string){
+  console.log(string,'22222222232321')
+  let value = string.slice(string.indexOf(name))
+  while(value[0] != ':'){
+      value = value.slice(1)
   }
-// console.log(points.slice())
-  if(points.length == 0 ){
+  value = value.slice(1)
+  while(value[0] == ' '){
+      value = value.slice(1)
+  }
+  value = value.slice(0,value.indexOf(','))
+  while(value[value.length-1] == ' '){
+      value = value.slice(0,value.length-1)
+  }
+  return value
+}
+function get_point_array(str){
+  let string = str.slice(str.indexOf('[')+1,(str.indexOf(']')+1))
+  string = replace_all(string,' ','')
+  let array = []
+  while(string.indexOf('}')!=-1){
+      let string_to_push = string.slice(string.indexOf('{'),string.indexOf('}',string.indexOf('{'))) + ','
+      array.push(string_to_push)
+      string = string.slice(string.indexOf('}')+1)
+  }
+  array = array.map( el => {
+      const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null,max_iteration:null}
+      point.pX = parseFloat(return_value('pX',el))
+      point.pY = parseFloat(return_value('pY',el))
+      point.zoom = parseFloat(return_value('zoom',el))
+      point.hue = return_value('hue',el)
+      point.inmandelbrot_color = return_value('inmandelbrot_color',el)
+      point.smooth_coloring = return_value('smooth_coloring',el) == 'true'
+      point.max_iteration = parseFloat(return_value('max_iteration',el))
+      return point
+  })
+  return array
+}
+if(window.location.hash.length>2){
+  let string = window.location.hash.slice(2)
+    string = replace_all(string,'%22','"')
+    string = replace_all(string,'"','')
+    string = replace_all(string,"'",'')
+    string = replace_all(string,"`",'')
+    string = replace_all(string,'%20',' ')
+    console.log(string)
+    //LIST OF POINTS
+    points = get_point_array(string)
+    if(points.length == 0 ){
       points = 
         [
             {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:5000},
@@ -174,61 +179,55 @@ if(window.location.hash.length>2){
             {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:20000}
         ]
   }
-  ////////////////
-  function return_int(string,searched){
-    const start_index = string.indexOf(searched+':')+searched.length+1
-    const end_index = string.indexOf(',',start_index)
-    let number = string.slice(start_index,end_index)
-    if(number[0]=="'" || number[0]=='"'){
-        number = number.slice(1)
+    //OTHER ATRIBUTES
+    if(string.indexOf(',')!=-1){
+        if(string.indexOf('fractal') != -1){
+            fractal = return_value('fractal',string)
+        }
+        // string = replace_all(string,' ','')
+        if(string.indexOf('cX') != -1){
+            julia_point.x = parseFloat(return_value('cX',string))
+        }
+        if(string.indexOf('cY') != -1){
+            julia_point.y = parseFloat(return_value('cY',string))
+        }    
+        if(string.indexOf('width')!=-1){
+            width_pixel = parseInt(return_value('width',string))
+        }
+        if(string.indexOf('text_size')!=-1){
+            font_size = parseFloat(return_value('text_size',string))
+        }    
+        if(string.indexOf('point_size')!=-1){
+            center_point_radius = parseInt(return_value('point_size',string))
+        }
+        if(string.indexOf('file_counter')!=-1){
+            file_counter = parseInt(return_value('file_counter',string))
+        }
+        if(string.indexOf('zoom_orientation')!=-1){
+            zoom_orientation = return_value('zoom_orientation',string)
+        }
+        if(string.indexOf('file_name')!=-1){
+            file_name = return_value('file_name',string)
+        }
+        if(string.indexOf('text_color')!=-1){
+            zoom_text_color = return_value('text_color',string)
+        }
+        if(string.indexOf('point_color')!=-1){
+            center_point_color = return_value('point_color',string)
+        }
+        if(string.indexOf('enable_download')!=-1){
+            enable_download_files = return_value('enable_download',string) == 'true'
+        }
+        if(string.indexOf('enable_text')!=-1){
+            enable_zoom_text = return_value('enable_text',string) == 'true'
+        }
+        if(string.indexOf('enable_zoom')!=-1){
+            enable_zoom = return_value('enable_zoom',string) == 'true'
+        }
+        if(string.indexOf('enable_point')!=-1){
+            enable_center_point = return_value('enable_point',string) == 'true'
+        }
     }
-    if(number[number.length-1]=="'" || number[number.length-1] =='"'){
-        number = number.slice(0,number.length-1)
-    }
-    return parseInt(number)
-  }
-  function return_text(string,searched){
-      const start_index = string.indexOf(searched+':')+searched.length+1
-      const end_index = string.indexOf(',',start_index)
-      let text = string.slice(start_index,end_index)
-      if(text[0]=="'" || text[0]=='"'){
-          text = text.slice(1)
-      }
-      if(text[text.length-1]=="'" || text[text.length-1] =='"'){
-          text = text.slice(0,text.length-1)
-      }
-      return text
-  }
-  function return_boolean(string,searched){
-      const start_index = string.indexOf(searched+':')+searched.length+1
-      const end_index = string.indexOf(',',start_index)
-      let boolean = string.slice(start_index,end_index)
-      if(boolean[0]=="'" || boolean[0]=='"'){
-          boolean = boolean.slice(1)
-      }
-      if(boolean[boolean.length-1] =="'" || boolean[boolean.length-1] =='"'){
-          boolean = boolean.slice(0,boolean.length-1)
-      }
-      return boolean == 'true'
-  }
-
-  let hashCode = hash.slice(0,hash.indexOf('list_of_points:'))
-
-  width_pixel = return_int(hashCode,'width')
-  font_size = return_int(hashCode,'text_size')
-  center_point_radius = return_int(hashCode,'point_size')
-  file_counter = return_int(hashCode,'file_counter')
-
-  zoom_orientation = return_text(hashCode,'zoom_orientation')
-  file_name = return_text(hashCode,'file_name')
-  zoom_text_color = return_text(hashCode,'text_color')
-  center_point_color = return_text(hashCode,'point_color')
-
-  enable_download_files = return_boolean(hashCode,'enable_download')
-  enable_zoom_text = return_boolean(hashCode,'enable_text')
-  enable_zoom = return_boolean(hashCode,'enable_zoom')
-  enable_center_point = return_boolean(hashCode,'enable_point')
-
   
   if(isNaN(file_counter)){
     file_counter = parseInt(window.prompt('Type the file counter to begin the animation: '))
@@ -239,17 +238,6 @@ if(window.location.hash.length>2){
       file_counter = 1
     }
   }
-
-  if(hashCode.indexOf('fractal:') != -1){
-    fractal = hashCode.slice(hashCode.indexOf('fractal:')+9,hashCode.indexOf(',',hashCode.indexOf('fractal:')+9)-1)
-  }
-  if(hashCode.indexOf('cX:') != -1){
-      julia_point.x = parseFloat(hashCode.slice(hashCode.indexOf('cX:')+3,hashCode.indexOf(',',hashCode.indexOf('cX')+3)))
-  }
-  if(hashCode.indexOf('cY:') != -1){
-      julia_point.y = parseFloat(hashCode.slice(hashCode.indexOf('cY:')+3,hashCode.indexOf(',',hashCode.indexOf('cY')+3)))
-  }
-
 }
 
 for(let i in points){

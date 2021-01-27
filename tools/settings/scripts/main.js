@@ -32,50 +32,75 @@ function replace_all(string,c,r){
     }
     return s
 }
+function return_value(name,string){
+    console.log(string,'22222222232321')
+    let value = string.slice(string.indexOf(name))
+    console.log(value)
+    while(value[0] != ':'){
+        value = value.slice(1)
+        console.log('firstWhile')
+    }
+    value = value.slice(1)
+    while(value[0] == ' '){
+        value = value.slice(1)
+        console.log('secondWHILE')
+    }
+    value = value.slice(0,value.indexOf(','))
+    while(value[value.length-1] == ' '){
+        value = value.slice(0,value.length-1)
+        console.log('TIERHSWhile')
+    }
+    return value
+}
+function get_point_array(str){
+    let string = str.slice(str.indexOf('[')+1,(str.indexOf(']')+1))
+    string = replace_all(string,' ','')
+    let array = []
+    console.log(string)
+    while(string.indexOf('}')!=-1){
+        let string_to_push = string.slice(string.indexOf('{'),string.indexOf('}',string.indexOf('{'))) + ','
+        array.push(string_to_push)
+        string = string.slice(string.indexOf('}')+1)
+    }
+    array = array.map( el => {
+        const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null,max_iteration:null}
+        point.pX = parseFloat(return_value('pX',el))
+        point.pY = parseFloat(return_value('pY',el))
+        point.zoom = parseFloat(return_value('zoom',el))
+        point.hue = return_value('hue',el)
+        point.inmandelbrot_color = return_value('inmandelbrot_color',el)
+        point.smooth_coloring = return_value('smooth_coloring',el) == 'true'
+        point.max_iteration = parseFloat(return_value('max_iteration',el))
+        return point
+    })
+    return array
+}
+
 
 let hash_code = window.location.hash.slice(1)
 hash_code = replace_all(hash_code,'%22','"')
-hash_code = replace_all(hash_code,'%20',' ') 
+hash_code = replace_all(hash_code,'"','')
+hash_code = replace_all(hash_code,"'",'')
+hash_code = replace_all(hash_code,"`",'')
+hash_code = replace_all(hash_code,'%20',' ')
 
-let hash = hash_code.slice(hash_code.indexOf('list_of_points:')+16,hash_code.indexOf(']',hash_code.indexOf('list_of_points:')+16))
-let points = []
+
+
+let points = get_point_array(hash_code)
 
 const julia_point = { x: -0.47287874088227777 , y: 0.6242402553543369 }
 let fractal = 'Mandelbrot'
 
-if(hash_code.indexOf('fractal:') != -1){
-    fractal = hash_code.slice(hash_code.indexOf('fractal:')+9,hash_code.indexOf(',',hash_code.indexOf('fractal:')+9)-1)
+if(hash_code.indexOf('fractal') != -1){
+    fractal = return_value('fractal',hash_code)
 }
-if(hash_code.indexOf('cX:') != -1){
-    julia_point.x = parseFloat(hash_code.slice(hash_code.indexOf('cX:')+3,hash_code.indexOf(',',hash_code.indexOf('cX')+3)))
+if(hash_code.indexOf('cX') != -1){
+    julia_point.x = parseFloat(return_value('cX',hash_code))
 }
-if(hash_code.indexOf('cY:') != -1){
-    julia_point.y = parseFloat(hash_code.slice(hash_code.indexOf('cY:')+3,hash_code.indexOf(',',hash_code.indexOf('cY')+3)))
+if(hash_code.indexOf('cY') != -1){
+    julia_point.y = parseFloat(return_value('cY',hash_code))
 }
 
-function get_point1(){
-    const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null,max_iteration:null}
-    point.pX = parseFloat(hash.slice(4,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.pY = parseFloat(hash.slice(3,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.zoom = parseFloat(hash.slice(5,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.hue = String(hash.slice(5,hash.indexOf(',')-1))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.inmandelbrot_color = String(hash.slice(20,hash.indexOf(',')-1))
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.smooth_coloring =  String(hash.slice(16,20)) == 'true'
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.max_iteration = parseInt(hash.slice(hash.indexOf('max_iteration:')+14,hash.indexOf('}')))
-    hash = hash.slice((hash.indexOf(',')==-1?hash.indexOf('}')-1:hash.indexOf('pX'))-1)
-    
-    // hash = hash.slice((hash.indexOf(',')==-1?hash.indexOf('}')-1:hash.indexOf(',')+1))
-    points.push(point)
-}
-while( hash.length > 7){
-    get_point1()
-}
 if(points.length == 0 ){
     points = [
         {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:5000},
@@ -163,7 +188,6 @@ function max_file_counter_finder(point_list){
     }
     return max_file_counter_aux
   }
-
 
 // document.querySelector('#zoom').value = zoom
 document.querySelector('#text_color').value = zoom_text_color
@@ -764,24 +788,7 @@ function copycode(){
     document.execCommand('copy')
     document.body.removeChild(el)
 }
-function get_point(hash){
-    const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null}
-    point.pX = parseFloat(hash.slice(4,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.pY = parseFloat(hash.slice(3,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.zoom = parseFloat(hash.slice(5,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.hue = String(hash.slice(5,hash.indexOf(',')-1))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.inmandelbrot_color = String(hash.slice(20,hash.indexOf(',')-1))
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.smooth_coloring =  String(hash.slice(16,20)) == 'true'
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.max_iteration = parseInt(hash.slice(hash.indexOf('max_iteration:')+14,hash.indexOf('}')))    
-    hash = hash.slice((hash.indexOf(',')==-1?hash.indexOf('}')-1:hash.indexOf('pX'))-1) 
-    return [point,hash]
-}
+
 function replace_all(string,c,r){
     let s = string
     while(s.indexOf(c) != -1){
@@ -791,133 +798,75 @@ function replace_all(string,c,r){
 } 
 
 function check_code(){
-  
-//////////
-
-    let candidate_code = document.querySelector('#textareacode').value
-    while(candidate_code[0] == ' '){
-        candidate_code = candidate_code.slice(1)
-    }
-    candidate_code = replace_all(candidate_code,'%22','"')
-    candidate_code = replace_all(candidate_code,'%20',' ')
-    if(candidate_code.indexOf('fractal:') != -1){
-        fractal = candidate_code.slice(candidate_code.indexOf('fractal:')+9,candidate_code.indexOf(',',candidate_code.indexOf('fractal:')+9)-1)
-    }
-    if(candidate_code.indexOf('cX:') != -1){
-        julia_point.x = parseFloat(candidate_code.slice(candidate_code.indexOf('cX:')+3,candidate_code.indexOf(',',candidate_code.indexOf('cX')+3)))
-    }
-    if(candidate_code.indexOf('cY:') != -1){
-        julia_point.y = parseFloat(candidate_code.slice(candidate_code.indexOf('cY:')+3,candidate_code.indexOf(',',candidate_code.indexOf('cY')+3)))
-    }
+    let string = document.querySelector('#textareacode').value
+    string = replace_all(string,'%22','"')
+    string = replace_all(string,'"','')
+    string = replace_all(string,"'",'')
+    string = replace_all(string,"`",'')
+    string = replace_all(string,'%20',' ')
+    console.log(string)
+    //LIST OF POINTS
     let candidate_points = []
-    let possible_string = true
-
-    if(candidate_code.indexOf('list_of_points:') != -1){
-        let hash_1 = candidate_code.slice(candidate_code.indexOf('list_of_points:')+'list_of_points:'.length,candidate_code.indexOf(']',candidate_code.indexOf('list_of_points:')+'list_of_points:'.length))
-        hash_1 = hash_1.slice(hash_1.indexOf('pX')-1)
-        points = []
-        while(possible_string){
-            const candidate = get_point(hash_1)
-            possible_string = !isNaN(candidate[0].pX) && !isNaN(candidate[0].pX) && !isNaN(candidate[0].zoom) && typeof candidate[0].hue == typeof 'as'&& typeof candidate[0].inmandelbrot_color == typeof 'as'
-            if(possible_string){
-                hash_1 = candidate[1]
-                candidate_points.push(candidate[0])            
-            }else{
-                possible_string = false
-            }
-        }
+    if(string.indexOf('list_of_points') != -1){
+        candidate_points = get_point_array(string)
         if(candidate_points.every(candidate => !isNaN(candidate.pX) && !isNaN(candidate.pX) && !isNaN(candidate.zoom) && typeof candidate.hue == typeof 'as'&& typeof candidate.inmandelbrot_color == typeof 'as') && candidate_points.length>0 && window.confirm('Are you sure about loading another set of points?')){
-            points_list = candidate_points
+            points_list = candidate_points.slice()
             for(let i in points_list){
                 points_list[i].hue = hexToHSLIndex(points_list[i].hue)
             }
             update_point_list()
         } 
     }
-    ///////////////////////
-    ///////////////////////
-    function return_int(string,searched,float = false){
-        const start_index = string.indexOf(searched+':')+searched.length+1
-        const end_index = string.indexOf(',',start_index)
-        let number = string.slice(start_index,end_index)
-        if(number[0]=="'" || number[0]=='"'){
-            number = number.slice(1)
+
+    //OTHER ATRIBUTES
+    if(string.indexOf(',')!=-1){
+        if(string.indexOf('fractal') != -1){
+            fractal = return_value('fractal',string)
         }
-        if(number[number.length-1]=="'" || number[number.length-1] =='"'){
-            number = number.slice(0,number.length-1)
+        // string = replace_all(string,' ','')
+        if(string.indexOf('cX') != -1){
+            julia_point.x = parseFloat(return_value('cX',string))
         }
-        if(float){
-            return parseFloat(number)
-        }else{
-            return parseInt(number)
+        if(string.indexOf('cY') != -1){
+            julia_point.y = parseFloat(return_value('cY',string))
+        }    
+        if(string.indexOf('width')!=-1){
+            width_pixel_zoom = parseInt(return_value('width',string))
         }
-    }
-    function return_text(string,searched){
-        const start_index = string.indexOf(searched+':')+searched.length+1
-        const end_index = string.indexOf(',',start_index)
-        let text = string.slice(start_index,end_index)
-        if(text[0]=="'" || text[0]=='"'){
-            text = text.slice(1)
+        if(string.indexOf('text_size')!=-1){
+            font_size = parseFloat(return_value('text_size',string))
+            font_size = font_size*width_pixel/width_pixel_zoom
+        }    
+        if(string.indexOf('point_size')!=-1){
+            center_point_size = parseInt(return_value('point_size',string))
         }
-        if(text[text.length-1]=="'" || text[text.length-1] =='"'){
-            text = text.slice(0,text.length-1)
+        if(string.indexOf('file_counter')!=-1){
+            file_counter = parseInt(return_value('file_counter',string))
         }
-        return text
-    }
-    function return_boolean(string,searched){
-        const start_index = string.indexOf(searched+':')+searched.length+1
-        const end_index = string.indexOf(',',start_index)
-        let boolean = string.slice(start_index,end_index)
-        if(boolean[0]=="'" || boolean[0]=='"'){
-            boolean = boolean.slice(1)
+        if(string.indexOf('zoom_orientation')!=-1){
+            zoom_orientation = return_value('zoom_orientation',string)
         }
-        if(boolean[boolean.length-1] =="'" || boolean[boolean.length-1] =='"'){
-            boolean = boolean.slice(0,boolean.length-1)
+        if(string.indexOf('file_name')!=-1){
+            file_name = return_value('file_name',string)
         }
-        return boolean == 'true'
-    }
-    let hashCode = candidate_code.slice(0,candidate_code.indexOf('list_of_points:'))
-    if(hashCode.indexOf('width')!=-1){
-        width_pixel_zoom = return_int(hashCode,'width')
-    }
-    if(hashCode.indexOf('text_size')!=-1){
-        font_size = return_int(hashCode,'text_size',true)
-        font_size = font_size*width_pixel/width_pixel_zoom
-    }
-    
-    if(hashCode.indexOf('point_size')!=-1){
-        center_point_size = return_int(hashCode,'point_size')
-    }
-    if(hashCode.indexOf('file_counter')!=-1){
-        file_counter = return_int(hashCode,'file_counter')
-    }
-    ///////////////////////
-    ///////////////////////
-    if(hashCode.indexOf('zoom_orientation')!=-1){
-        zoom_orientation = return_text(hashCode,'zoom_orientation')
-    }
-    if(hashCode.indexOf('file_name')!=-1){
-        file_name = return_text(hashCode,'file_name')
-    }
-    if(hashCode.indexOf('text_color')!=-1){
-        zoom_text_color = return_text(hashCode,'text_color')
-    }
-    if(hashCode.indexOf('point_color')!=-1){
-        center_point_color = return_text(hashCode,'point_color')
-    }
-    ///////////////////////
-    ///////////////////////
-    if(hashCode.indexOf('enable_download')!=-1){
-        enable_download_files = return_boolean(hashCode,'enable_download')
-    }
-    if(hashCode.indexOf('enable_text')!=-1){
-        enable_zoom_text = return_boolean(hashCode,'enable_text')
-    }
-    if(hashCode.indexOf('enable_zoom')!=-1){
-        enable_zoom = return_boolean(hashCode,'enable_zoom')
-    }
-    if(hashCode.indexOf('enable_point')!=-1){
-        enable_center_point = return_boolean(hashCode,'enable_point')
+        if(string.indexOf('text_color')!=-1){
+            zoom_text_color = return_value('text_color',string)
+        }
+        if(string.indexOf('point_color')!=-1){
+            center_point_color = return_value('point_color',string)
+        }
+        if(string.indexOf('enable_download')!=-1){
+            enable_download_files = return_value('enable_download',string) == 'true'
+        }
+        if(string.indexOf('enable_text')!=-1){
+            enable_zoom_text = return_value('enable_text',string) == 'true'
+        }
+        if(string.indexOf('enable_zoom')!=-1){
+            enable_zoom = return_value('enable_zoom',string) == 'true'
+        }
+        if(string.indexOf('enable_point')!=-1){
+            enable_center_point = return_value('enable_point',string) == 'true'
+        }
     }
     document.querySelector('#text_color').value = zoom_text_color
     document.querySelector('#allow_zoom_text').checked = enable_zoom_text
@@ -936,8 +885,6 @@ function check_code(){
     document.querySelector('#textareacode').value = ''
 }
 
-
-/////
 
 window.addEventListener('mousemove', (event) => {
     

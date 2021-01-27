@@ -91,8 +91,6 @@ function f_julia(x, y) {
 function f_burning_ship(x, y, cx, cy) {
     return { x: x ** 2 - y ** 2 - cx, y: (Math.abs(2*y*x) -cy) }
 }
-
-
 function in_main_cardioid(x,y){
     const teta = Math.atan2(Math.abs(y),x)
     return (x**2+y**2) <= (1/2*Math.cos(teta) - 1/4*Math.cos(2*teta))**2 + (1/2*Math.sin(teta) - 1/4*Math.sin(2*teta))**2
@@ -413,58 +411,77 @@ function copycode(){
     document.execCommand('copy')
     document.body.removeChild(el)
 }
-function get_point(hash){
-    const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null,max_iteration:null}
-    point.pX = parseFloat(hash.slice(4,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.pY = parseFloat(hash.slice(3,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.zoom = parseFloat(hash.slice(5,hash.indexOf(',')))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.hue = String(hash.slice(5,hash.indexOf(',')-1))
-    hash = hash.slice(hash.indexOf(',')+1)
-    point.inmandelbrot_color = String(hash.slice(20,hash.indexOf(',')-1))
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.smooth_coloring =  String(hash.slice(16,20)) == 'true'
-    hash =hash.slice(hash.indexOf(',')+1)
-    point.max_iteration = parseInt(hash.slice(hash.indexOf('max_iteration:')+14,hash.indexOf('}')))
-    hash = hash.slice((hash.indexOf(',')==-1?hash.indexOf('}')-1:hash.indexOf('pX'))-1)
-    return [point,hash]
+function replace_all(string,c,r){
+    let s = string
+    while(s.indexOf(c) != -1){
+        s = s.replace(c,r)
+    }
+    return s
+}
+function return_value(name,string){
+    let value = string.slice(string.indexOf(name))
+    while(value[0] != ':'){
+        value = value.slice(1)
+    }
+    value = value.slice(1)
+    while(value[0] == ' '){
+        value = value.slice(1)
+    }
+    value = value.slice(0,value.indexOf(','))
+    while(value[value.length-1] == ' '){
+        value = value.slice(0,value.length-1)
+    }
+    return value
+}
+function get_point_array(str){
+    let string = str.slice(str.indexOf('[')+1,(str.indexOf(']')+1))
+    string = replace_all(string,' ','')
+    let array = []
+    while(string.indexOf('}')!=-1){
+        let string_to_push = string.slice(string.indexOf('{'),string.indexOf('}',string.indexOf('{'))) + ','
+        array.push(string_to_push)
+        string = string.slice(string.indexOf('}')+1)
+    }
+    array = array.map( el => {
+        const point = {pX:null,pY:null,zoom:null,hue:null,inmandelbrot_color:null,smooth_coloring:null,max_iteration:null}
+        point.pX = parseFloat(return_value('pX',el))
+        point.pY = parseFloat(return_value('pY',el))
+        point.zoom = parseFloat(return_value('zoom',el))
+        point.hue = return_value('hue',el)
+        point.inmandelbrot_color = return_value('inmandelbrot_color',el)
+        point.smooth_coloring = return_value('smooth_coloring',el) == 'true'
+        point.max_iteration = parseFloat(return_value('max_iteration',el))
+        return point
+    })
+    return array
 }
 function check_code(){
-    let code = document.querySelector('#textareacode').value
-    if(code.indexOf('fractal:') != -1){
-        fractal = code.slice(code.indexOf('fractal:')+9,code.indexOf(',',code.indexOf('fractal:')+9)-1)
+    let string = document.querySelector('#textareacode').value
+    string = replace_all(string,'%22','"')
+    string = replace_all(string,'"','')
+    string = replace_all(string,"'",'')
+    string = replace_all(string,"`",'')
+    string = replace_all(string,'%20',' ')
+    if(string.indexOf('fractal') != -1){
+        fractal = return_value('fractal',string)
     }
-    if(code.indexOf('cX:') != -1){
-        julia_point.x = parseFloat(code.slice(code.indexOf('cX:')+3,code.indexOf(',',code.indexOf('cX')+3)))
+    if(string.indexOf('cX') != -1){
+        julia_point.x = parseFloat(return_value('cX',string))
     }
-    if(code.indexOf('cY:') != -1){
-        julia_point.y = parseFloat(code.slice(code.indexOf('cY:')+3,code.indexOf(',',code.indexOf('cY')+3)))
+    if(string.indexOf('cY') != -1){
+        julia_point.y = parseFloat(return_value('cY',string))
     }
-    let candidate_code = code.slice(code.indexOf('list_of_points:')+'list_of_points:'.length+1,code.indexOf(']',code.indexOf('list_of_points:')+'list_of_points:'.length))
-        
-    while(candidate_code[0] == ' '){
-        candidate_code = candidate_code.slice(1)
-    }
-    candidate_code = candidate_code.slice(candidate_code.indexOf('pX')-1)
-    let candidate_points = []
-    let possible_string = true
 
-    while(possible_string){
-        const candidate = get_point(candidate_code)
-        possible_string = !isNaN(candidate[0].pX) && !isNaN(candidate[0].pY) && !isNaN(candidate[0].zoom) && typeof candidate[0].hue == typeof 'as'&& typeof candidate[0].inmandelbrot_color == typeof 'as'
-        if(possible_string){
-            candidate_code = candidate[1]
-            candidate_points.push(candidate[0])            
-        }else{
-            possible_string = false
-        }
+    //LIST OF POINTS
+    let candidate_points = []
+    if(string.indexOf('list_of_points') != -1){
+        candidate_points = get_point_array(string)
+        if(candidate_points.every(candidate => !isNaN(candidate.pX) && !isNaN(candidate.pX) && !isNaN(candidate.zoom) && typeof candidate.hue == typeof 'as'&& typeof candidate.inmandelbrot_color == typeof 'as') && candidate_points.length>0 && window.confirm('Are you sure about loading another set of points?')){
+            points = candidate_points.slice()
+            update_point_list()
+        } 
     }
-    if(candidate_points.every(candidate => !isNaN(candidate.pX) && !isNaN(candidate.pX) && !isNaN(candidate.zoom) && typeof candidate.hue == typeof 'as'&& typeof candidate.inmandelbrot_color == typeof 'as') && candidate_points.length>0 && window.confirm('Are you sure about loading another set of points?')){
-        points = candidate_points
-        update_point_list()
-    }
+    console.log(points)
     document.querySelector('#textareacode').value = ''
     document.querySelector('#pX_julia_value').value = julia_point.x
     document.querySelector('#pY_julia_value').value = julia_point.y
