@@ -16,14 +16,14 @@ document.querySelector("#svg_pause_play").innerHTML = pause_svg
 
 const canvas2 = document.querySelector('#canvas2')
 canvas2.width = width_pixel_c2
-canvas2.height = width_pixel_c2*resol
+canvas2.height = width_pixel_c2*height_pixel_zoom/width_pixel_zoom
 const c2 = canvas2.getContext('2d')
 c2.textBaseline = 'middle'
 c2.textAlign = 'center'
 
-const cH_c2 = canvas2.height
-const cW_c2 = canvas2.width 
-const alfa_c2 = 4*cH_c2/cW_c2
+let cH_c2 = canvas2.height
+let cW_c2 = canvas2.width 
+let alfa_c2 = 4*cH_c2/cW_c2
 let dx_c2 = 4/zoom
 let dy_c2 = alfa_c2/zoom
 let offsetX_c2 = -dx_c2/2
@@ -84,6 +84,21 @@ function set_dx_c2_dy_c2(){
 
 let file_counter_preview = file_counter
 function start_zoom(){
+
+    canvas2.width = width_pixel_c2
+    canvas2.height = width_pixel_c2*height_pixel_zoom/width_pixel_zoom
+    cH_c2 = canvas2.height
+    cW_c2 = canvas2.width 
+    alfa_c2 = 4*cH_c2/cW_c2
+    dx_c2 = 4/zoom
+    dy_c2 = alfa_c2/zoom
+    offsetX_c2 = -dx_c2/2
+    offsetY_c2 = dy_c2/2
+    point_offsetX_c2 = cW_c2/2
+    point_offsetY_c2 = cH_c2/2
+
+    ////
+
     points = points_list.slice()
     atribute_points()
     counter = 0

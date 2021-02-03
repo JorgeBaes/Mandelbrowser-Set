@@ -1,6 +1,7 @@
-
+let init_date = new Date().getTime()
 let points = mandelbrot.points
-let width_pixel = mandelbrot.width_pixel        
+let width_pixel = mandelbrot.width_pixel  
+let height_pixel =  mandelbrot.height_pixel       
 const zoom_factor = 1.008 /// DO NOT CHANGE
 
 let enable_zoom_text = mandelbrot.enable_zoom_text     
@@ -103,7 +104,6 @@ function replace_all(string,c,r){
   return s
 }
 function return_value(name,string){
-  console.log(string,'22222222232321')
   let value = string.slice(string.indexOf(name))
   while(value[0] != ':'){
       value = value.slice(1)
@@ -147,7 +147,6 @@ if(window.location.hash.length>2){
     string = replace_all(string,"'",'')
     string = replace_all(string,"`",'')
     string = replace_all(string,'%20',' ')
-    console.log(string)
     //LIST OF POINTS
     points = get_point_array(string)
     if(points.length == 0 ){
@@ -193,6 +192,9 @@ if(window.location.hash.length>2){
         }    
         if(string.indexOf('width')!=-1){
             width_pixel = parseInt(return_value('width',string))
+        }
+        if(string.indexOf('width')!=-1){
+          height_pixel = parseInt(return_value('height',string))
         }
         if(string.indexOf('text_size')!=-1){
             font_size = parseFloat(return_value('text_size',string))
@@ -389,9 +391,9 @@ if(points.length == 1){
 
 
 const canvas = document.querySelector('canvas')
-const resol = 0.5625
+const resol = 1//0.5625
 canvas.width = width_pixel
-canvas.height = width_pixel*resol
+canvas.height = height_pixel
 const c = canvas.getContext('2d')
 c.textBaseline = 'middle'
 c.textAlign = 'center'

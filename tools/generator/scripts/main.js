@@ -1,6 +1,7 @@
 let now_date = new Date()
 let past_date = new Date()
 let image_time = new Date()
+
 setTimeout(() => {
     if(enable_zoom){
         interval_iteration = setInterval(function () {
@@ -19,6 +20,8 @@ setTimeout(() => {
                 now_date = new Date()
                 image_time = (now_date.getTime() - past_date.getTime())/1000
                 document.querySelector('#image_time').innerText = `Image Generating Time : ${image_time}`
+                document.querySelector('#span_time_spent').innerText = `Time Spent : ${convert_time((now_date.getTime() - init_date)/1000)}`
+        
                 update_values()
                 set_dx_dy() 
                 set_values_to_span()
@@ -47,23 +50,23 @@ setTimeout(() => {
             }
         }, 0)
     }else{
-        console.log(points) 
-console.log('width_pixel',width_pixel)
-console.log('zoom',zoom)
-console.log('max_iteration',max_iteration)
-console.log('zoom_orientation',zoom_orientation)
-console.log('enable_zoom_text',enable_zoom_text)
-console.log('zoom_text_color',zoom_text_color)
-console.log('converted_font_size',font_size)
-console.log('file_counter',file_counter)
-console.log('file_name',file_name)
-console.log('enable_download_files',enable_download_files)
-console.log('enable_zoom',enable_zoom)
-console.log(points)
-console.log(enable_center_point)
-console.log(center_point_color)
-console.log(enable_center_point)
-console.log(center_point_radius) 
+        // console.log(points) 
+        // console.log('width_pixel',width_pixel)
+        // console.log('zoom',zoom)
+        // console.log('max_iteration',max_iteration)
+        // console.log('zoom_orientation',zoom_orientation)
+        // console.log('enable_zoom_text',enable_zoom_text)
+        // console.log('zoom_text_color',zoom_text_color)
+        // console.log('converted_font_size',font_size)
+        // console.log('file_counter',file_counter)
+        // console.log('file_name',file_name)
+        // console.log('enable_download_files',enable_download_files)
+        // console.log('enable_zoom',enable_zoom)
+        // console.log(points)
+        // console.log(enable_center_point)
+        // console.log(center_point_color)
+        // console.log(enable_center_point)
+        // console.log(center_point_radius) 
         set_values_to_span()
         const x1 = pX + offsetX
         const y1 = pY + offsetY    

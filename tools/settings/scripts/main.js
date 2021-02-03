@@ -134,7 +134,7 @@ for(let i in points){
 let points_list = points.slice()
 const width_pixel = 720
 let width_pixel_zoom = 1080
-
+let height_pixel_zoom = 608
 const canvas = document.querySelector('#canvas1')
 const resol = 0.5625
 canvas.width = width_pixel
@@ -196,6 +196,7 @@ document.querySelector('#zoom_text_font_size').value = font_size
 document.querySelector('#file_counter').value = file_counter
 document.querySelector('#file_name').value = file_name
 document.querySelector('#pixel_width').value = width_pixel_zoom
+document.querySelector('#pixel_height').value = height_pixel_zoom
 document.querySelector('#enable_download').checked = enable_download_files
 document.querySelector('#enable_zoom').checked = enable_zoom
 document.querySelector('#allow_zoom_point').checked = enable_center_point 
@@ -410,6 +411,25 @@ function update_values(){
         width_pixel = 100
     }
     check_for_valid_file_name()
+}
+function update_width(){
+    width_pixel_zoom = parseInt(document.querySelector('#pixel_width').value)
+    if(width_pixel_zoom < 50){
+        width_pixel_zoom = 50
+    }
+    height_pixel_zoom = parseInt(width_pixel_zoom*resol)
+    document.querySelector('#pixel_height').value = height_pixel_zoom
+    document.querySelector('#pixel_width').value = width_pixel_zoom
+    update_values()
+}
+function update_height(){
+    height_pixel_zoom = parseInt(document.querySelector('#pixel_height').value)
+    if(height_pixel_zoom < 28){
+        height_pixel_zoom = 28
+    }
+    document.querySelector('#pixel_height').value = height_pixel_zoom
+    document.querySelector('#pixel_width').value = width_pixel_zoom
+    update_values()
 }
 function set_dx_dy(){
     dx = 4/zoom
@@ -733,7 +753,7 @@ atribute_points()
 
 function open_generator(){
     converted_font_size = font_size/width_pixel*width_pixel_zoom
-    const hash_string_2 = `fractal:'${fractal}',file_counter:${file_counter},width:${width_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size},cX:${julia_point.x},cY:${julia_point.y}`
+    const hash_string_2 = `fractal:'${fractal}',file_counter:${file_counter},width:${width_pixel_zoom},height:${height_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size},cX:${julia_point.x},cY:${julia_point.y}`
 
     for(let i in points_list){
         points_list[i].hue = hslToHex(points_list[i].hue,100,79)
@@ -758,8 +778,7 @@ function open_generator(){
 }
 function copycode(){
     converted_font_size = font_size/width_pixel*width_pixel_zoom
-    const hash_string_2 = `fractal:'${fractal}',file_counter:${file_counter},width:${width_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size},cX:${julia_point.x},cY:${julia_point.y}`
-
+    const hash_string_2 = `fractal:'${fractal}',file_counter:${file_counter},width:${width_pixel_zoom},height:${height_pixel_zoom},file_name:'${file_name}',enable_zoom:${enable_zoom},enable_download:${enable_download_files},zoom_orientation:'${zoom_orientation}',enable_point:${enable_center_point},point_color:'#${center_point_color.slice(1)}',point_size:${center_point_size},enable_text:${enable_zoom_text},text_color:'#${zoom_text_color.slice(1)}',text_size:${converted_font_size},cX:${julia_point.x},cY:${julia_point.y}`
     for(let i in points_list){
         points_list[i].hue = hslToHex(points_list[i].hue,100,79)
     }
@@ -833,6 +852,9 @@ function check_code(){
         if(string.indexOf('width')!=-1){
             width_pixel_zoom = parseInt(return_value('width',string))
         }
+        if(string.indexOf('height')!=-1){
+            height_pixel_zoom = parseInt(return_value('height',string))
+        }
         if(string.indexOf('text_size')!=-1){
             font_size = parseFloat(return_value('text_size',string))
             font_size = font_size*width_pixel/width_pixel_zoom
@@ -874,6 +896,7 @@ function check_code(){
     document.querySelector('#file_counter').value = file_counter
     document.querySelector('#file_name').value = file_name
     document.querySelector('#pixel_width').value = width_pixel_zoom
+    document.querySelector('#pixel_height').value = height_pixel_zoom
     document.querySelector('#enable_download').checked = enable_download_files
     document.querySelector('#enable_zoom').checked = enable_zoom
     document.querySelector('#allow_zoom_point').checked = enable_center_point 

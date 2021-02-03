@@ -152,6 +152,17 @@ function inMandelbrot(x, y) {
     }
     return inmandelbrot_color
 }
+function get_time_correct(string){
+    const s = String(string)
+    return s.length == 2 ? s : `0${s}`
+}
+function convert_time(time){
+    const hour = Math.floor(time/3600)
+    const minutes = Math.floor((time/60)%60)
+    const seconds = Math.floor(time%60)
+    console.log(seconds)
+    return`${get_time_correct(hour)}:${get_time_correct(minutes)}:${get_time_correct(seconds)}`
+}
 function set_values_to_span(){
     if(!enable_center_point){
         document.querySelector('#point_section').style.display = 'none'
@@ -167,6 +178,7 @@ function set_values_to_span(){
     document.querySelector('#span_enable_zoom').innerText = `Enable Zoom : ${enable_zoom}` 
     document.querySelector('#span_file_name').innerText = `File Name : ${file_name}` 
     document.querySelector('#span_width_pixel').innerText = `Width Pixel : ${width_pixel}` 
+    document.querySelector('#span_height_pixel').innerText = `Height Pixel : ${height_pixel}`              
     document.querySelector('#span_zoom_orientation').innerText = `Zoom Orientation : ${zoom_orientation}` 
     document.querySelector('#span_enable_text').innerText = `Enable Text : ${enable_zoom_text}` 
     document.querySelector('#span_text_size').innerText = `Text Size : ${font_size}`  
@@ -174,8 +186,9 @@ function set_values_to_span(){
     document.querySelector('#span_enable_point').innerText = `Enable Point : ${enable_center_point}` 
     document.querySelector('#span_point_size').innerText = `Point Size : ${center_point_radius}`  
     document.querySelector('#span_point_color').innerHTML = `<span style="color:${center_point_color}">Point Color : ${center_point_color}</span>`              
-    document.querySelector('#max_iteration').innerText = `Max Iteration : ${max_iteration}`              
-    
+    document.querySelector('#max_iteration').innerText = `Max Iteration : ${max_iteration.toFixed(2)}`   
+    document.querySelector('#span_expected_time').innerText = `Expected Time : ${convert_time(parseInt((max_file_counter-file_counter_track)*image_time))}`
+
     if(enable_download_files){
         document.querySelector('#enable_download_files_div').style.backgroundColor = "#baffc6" 
     }else{
@@ -189,4 +202,5 @@ function set_values_to_span(){
     document.querySelector('#porcentage_process').style.width = `calc(14px + ${((file_counter_track)/max_file_counter*25)}vw)`
     document.querySelector('#porcentage_span').innerText = `Process ${((file_counter_track)/max_file_counter*100).toFixed(1)}%`
 }
+
 set_dx_dy()

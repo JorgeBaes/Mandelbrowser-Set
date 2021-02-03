@@ -38,6 +38,7 @@
     </style>
 </head>
 <body>
+    
     <div class="major_div" style="display: flex; justify-content: space-evenly;
                     align-items: center;"> 
         <div class="sub_div">
@@ -50,30 +51,34 @@
             <span id="span_pY">pY : </span>
         </div>
     </div>
+    
+    
     <div class="major_div" style="display: flex; justify-content: space-evenly;
                     align-items: center;"> 
-        <div class="sub_div">
-            <span id="span_file_counter">File Counter : </span>
-        </div>
         <div class="sub_div" id="enable_download_files_div">
             <span id="span_enable_download">Enable Download : </span>
         </div>
         <div class="sub_div" id="enable_zoom_div">
             <span id="span_enable_zoom">Enable Zoom : </span>
         </div>
-    </div>
-    <div class="major_div" style="display: flex; justify-content: space-evenly;
-                    align-items: center;"> 
-        <div class="sub_div">
-            <span id="span_file_name">File Name : </span>
-        </div>
-        <div class="sub_div">
-            <span id="span_width_pixel">Width Pixel : </span>
-        </div>
         <div class="sub_div">
             <span id="span_zoom_orientation">Zoom Orientation : </span>
         </div>
     </div>
+
+    <div class="major_div" style="display: flex; justify-content: space-evenly;align-items: center;"> 
+        <div class="sub_div" >
+            <span id="max_iteration">Max Iteration :</span>
+        </div>
+        <div class="sub_div">
+            <span id="span_width_pixel">Width Pixel : </span>
+        </div>   
+        <div class="sub_div">
+            <span id="span_height_pixel">Height Pixel : </span>
+        </div>
+                    
+    </div>
+
     <div class="major_div" style="display: flex; justify-content: space-evenly;
                     align-items: center;" id="text_section"> 
         <div class="sub_div">
@@ -86,6 +91,7 @@
             <span id="span_text_color" class="color_span">Text Color : </span>
         </div>
     </div>
+
     <div class="major_div" style="display: flex; justify-content: space-evenly;
                     align-items: center;" id="point_section"> 
         <div class="sub_div">
@@ -98,10 +104,24 @@
             <span id="span_point_color" class="color_span">Point Color : </span>
         </div>
     </div>
+
     <div class="major_div" style="display: flex; justify-content: space-evenly;
                     align-items: center;"> 
-        <div class="sub_div" >
-            <span id="max_iteration">Max Iteration :</span>
+        <div class="sub_div">
+            <span id="span_file_counter">File Counter : </span>
+        </div>
+        <div class="sub_div">
+            <span id="span_file_name">File Name : </span>
+        </div>        
+        <div class="sub_div">
+            <span id="span_expected_time">&nbsp;</span>
+        </div>
+    </div>
+
+    <div class="major_div" style="display: flex; justify-content: space-evenly;
+                    align-items: center;">         
+        <div class="sub_div">
+            <span id="span_time_spent">Time: </span>
         </div>
         <div class="sub_div" >
             <span id="image_time">Image Generating Time</span>
@@ -110,9 +130,9 @@
             <div id="porcentage_process" style="box-shadow: 0px 0px 2px rgb(0, 0, 0); background-color: rgb(148, 255, 148); position: relative; right: 0; top: 0; height: 25px;">
                 <span id="porcentage_span" style="color: rgb(100, 4, 4); float:left; font-size: 21px;width: calc(14px + 25vw);">Process</span>                
             </div>
-        </div>
-        
+        </div>        
     </div>
+
     <br>
     <canvas style="overflow: auto;"></canvas>
     <script src="./scripts/config.js"></script>

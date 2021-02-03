@@ -9,6 +9,7 @@ DEEP PURPLE:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'deep_purple',
             enable_zoom:true,
             enable_download:true,
@@ -60,6 +61,7 @@ Five Degrees of Mandelbrot:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'five_degrees_of_mandelbrot',
             enable_zoom:true,
             enable_download:true,
@@ -94,6 +96,7 @@ Coloring Change:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'coloring_change',
             enable_zoom:true,
             enable_download:true,
@@ -131,6 +134,7 @@ Spider Web:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'spider_web',
             enable_zoom:true,
             enable_download:true,
@@ -161,6 +165,7 @@ Spiral:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'spiral',
             enable_zoom:'true',
             enable_download:true,
@@ -199,6 +204,7 @@ Net:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'net',
             enable_zoom:true,
             enable_download:true,
@@ -240,6 +246,7 @@ CROSSGUARD GIF:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'crossguard',
             enable_zoom:true,
             enable_download:true,
@@ -268,7 +275,8 @@ HURRICANE GIF:
         {
             fractal:'Mandelbrot',
             file_counter:1,
-            width:720,
+            width:1080,
+            height:607,
             file_name:'hurricane',
             enable_zoom:true,
             enable_download:true,
@@ -300,6 +308,7 @@ JULIA FLOWER:
             fractal:'Julia Set',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'julia_flower',
             enable_zoom:true,
             enable_download:true,
@@ -336,7 +345,6 @@ JULIA FLOWER:
         From 1 to 1653
 ---------------------------
 
-
 ---------------------------
 FACES:
     MANDELBROWSER CODE:
@@ -344,6 +352,7 @@ FACES:
             fractal:'Burning Ship',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'faces',
             enable_zoom:true,
             enable_download:true,
@@ -393,6 +402,7 @@ MANDELBOT:
             fractal:'Mandelbrot',
             file_counter:1,
             width:1080,
+            height:607,
             file_name:'mandelbot',
             enable_zoom:true,
             enable_download:true,
@@ -430,4 +440,53 @@ MANDELBOT:
         }
     Range of images:
         From 1 to 3702
+---------------------------
+
+---------------------------
+DRAKE:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Julia Set',
+            file_counter:1,
+            width:1080,
+            height:1350,
+            file_name:'drake',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#ffffff',
+            text_size:15,
+            cX:-0.8031786079406146,
+            cY:-0.17795927703478193,
+            list_of_points:
+            [
+                {pX:0,pY:0,zoom:0.1,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:50},
+                {pX:0,pY:0,zoom:0.3,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:150},
+                {pX:0,pY:0,zoom:0.5,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:250},
+                {pX:0,pY:0,zoom:0.7,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:500},
+                pX:0,pY:0,zoom:0.9,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:700},
+                {pX:0,pY:0,zoom:1,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:0.13224579169631467,pY:0.34193044886796703,zoom:6.250609752006695,hue:'#94ffa0',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:0.1185181893375978,pY:0.3353246618577775,zoom:39.070122271881196,hue:'#94ffa0',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:0.11430742225004259,pY:0.32224643317628243,zoom:244.21208728471453,hue:'#94ffa0',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:0.11437346743411761,pY:0.32229926932354247,zoom:610.5599992474984,hue:'#ffed94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:0.11437346743411761,pY:0.32229926932354247,zoom:610.5599992474984,hue:'#ffed94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:0.11437346743411761,pY:0.32229926932354247,zoom:610.5599992474984,hue:'#ffed94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+                {pX:0.11437346743411761,pY:0.32229926932354247,zoom:610.5599992474984,hue:'#ffed94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11658931859971225,pY:0.3226965738535376,zoom:3816.3722854816133,hue:'#ffed94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11659185436368676,pY:0.32270164538148666,zoom:9541.396110485119,hue:'#ffb994',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11661450608359812,pY:0.32278075735849054,zoom:23854.65382491945,hue:'#ffa494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11661382990626017,pY:0.3228039622904048,zoom:149106.1318287853,hue:'#ff9494',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.116614249469743,pY:0.32280460591020493,zoom:14564697.42139215,hue:'#94ffdb',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11661422143022059,pY:0.3228045780920989,zoom:91038239.73718055,hue:'#c4ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11661422145149523,pY:0.32280457776610205,zoom:569044509.106744,hue:'#fffb94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+                {pX:0.11661422151347327,pY:0.3228045777763249,zoom:2171685693760.4673,hue:'#ffdd94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:10000}
+            ]
+        }
+    Range of images:
+        From 1 to 4154
 ---------------------------

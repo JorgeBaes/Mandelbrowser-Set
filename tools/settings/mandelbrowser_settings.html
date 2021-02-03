@@ -328,6 +328,14 @@
             text-shadow: 0px 0px 10px #1b1e24;
             color: #1b1e24;
         }
+        .flex_div_{
+            display: flex;
+        }
+        .flex_div_child{
+            position: relative;
+            width: 24.6%;
+            margin: 0.2%;
+        }
         
     </style>
 </head>
@@ -443,15 +451,23 @@
                     <input type="button" title="Apply configuration" id="apply_button" class="pointer" onclick="apply_effects_according_to_file_counter()" value="  APPLY  ">
 
                 </div>
-                <div class="background_coloring">
-                <span class="sections_titles above_text" >Enable Download &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Enable Zoom&nbsp;&nbsp;</span><br>
-                <input type="checkbox" title="Enable Download" class="check_box pointer" name="" onchange="update_values()" id="enable_download">
-                &nbsp;&nbsp;&nbsp;
-                <span class="sections_titles below_text" >Pixel Width</span>
-                <input type="number" title="Pixel Width" name="" id="pixel_width" onchange="update_values()">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="sections_titles above_text" ></span>
-                <input type="checkbox" title="Enable Zoom" class="check_box pointer" name="" onchange="update_values()" id="enable_zoom">
+                <div class="background_coloring flex_div_">    
+                        <div class="background_coloring flex_div_child"> 
+                            <span class="sections_titles above_text" >Enable Download</span><br>
+                            <input type="checkbox" title="Enable Download" class="check_box pointer" name="" onchange="update_values()" id="enable_download">
+                        </div>             
+                        <div class="background_coloring flex_div_child"> 
+                            <span class="sections_titles above_text" >Pixel Width</span><br>
+                            <input type="number" title="Pixel Width" name="" id="pixel_width" onchange="update_width()">
+                        </div> 
+                        <div class="background_coloring flex_div_child"> 
+                            <span class="sections_titles above_text" >Pixel Height</span><br>
+                            <input type="number" title="Pixel Height" name="" id="pixel_height" onchange="update_height()">
+                        </div> 
+                        <div class="background_coloring flex_div_child"> 
+                            <span class="sections_titles above_text" >Enable Zoom</span><br>
+                            <input type="checkbox" title="Enable Zoom" class="check_box pointer" name="" onchange="update_values()" id="enable_zoom">
+                        </div> 
                 </div>
                 <input type="button" title="Preview" id="apply_button" class="pointer" onclick="preview()" value="PREVIEW">
                 <br>

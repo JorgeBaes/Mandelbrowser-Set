@@ -49,7 +49,8 @@
   // 'top-left' || 'top-right' || 'bottom-left' || 'bottom-right' 
   // || 'center' || 'mid-left' || 'mid-right' || 'mid-top' || 'mid-bottom'
 
-  width_pixel:720,            // image Width in pixels 
+  width_pixel:1080,            // image Width in pixels 
+  height_pixel:608,            // image Width in pixels 
 
   enable_download_files:false,  // enable the download of the images
   file_name:'mandelbrowser', // name of the file that will be saved
