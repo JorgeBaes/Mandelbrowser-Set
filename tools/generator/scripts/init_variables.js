@@ -176,7 +176,107 @@ if(window.location.hash.length>2){
             {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
             {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:15000},
             {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:20000}
-        ]
+      ]
+  }
+    //OTHER ATRIBUTES
+    if(string.indexOf(',')!=-1){
+        if(string.indexOf('fractal') != -1){
+            fractal = return_value('fractal',string)
+        }
+        // string = replace_all(string,' ','')
+        if(string.indexOf('cX') != -1){
+            julia_point.x = parseFloat(return_value('cX',string))
+        }
+        if(string.indexOf('cY') != -1){
+            julia_point.y = parseFloat(return_value('cY',string))
+        }    
+        if(string.indexOf('width')!=-1){
+            width_pixel = parseInt(return_value('width',string))
+        }
+        if(string.indexOf('width')!=-1){
+          height_pixel = parseInt(return_value('height',string))
+        }
+        if(string.indexOf('text_size')!=-1){
+            font_size = parseFloat(return_value('text_size',string))
+        }    
+        if(string.indexOf('point_size')!=-1){
+            center_point_radius = parseInt(return_value('point_size',string))
+        }
+        if(string.indexOf('file_counter')!=-1){
+            file_counter = parseInt(return_value('file_counter',string))
+        }
+        if(string.indexOf('zoom_orientation')!=-1){
+            zoom_orientation = return_value('zoom_orientation',string)
+        }
+        if(string.indexOf('file_name')!=-1){
+            file_name = return_value('file_name',string)
+        }
+        if(string.indexOf('text_color')!=-1){
+            zoom_text_color = return_value('text_color',string)
+        }
+        if(string.indexOf('point_color')!=-1){
+            center_point_color = return_value('point_color',string)
+        }
+        if(string.indexOf('enable_download')!=-1){
+            enable_download_files = return_value('enable_download',string) == 'true'
+        }
+        if(string.indexOf('enable_text')!=-1){
+            enable_zoom_text = return_value('enable_text',string) == 'true'
+        }
+        if(string.indexOf('enable_zoom')!=-1){
+            enable_zoom = return_value('enable_zoom',string) == 'true'
+        }
+        if(string.indexOf('enable_point')!=-1){
+            enable_center_point = return_value('enable_point',string) == 'true'
+        }
+    }
+  
+  if(isNaN(file_counter)){
+    file_counter = parseInt(window.prompt('Type the file counter to begin the animation: '))
+    if(isNaN(file_counter)){
+      file_counter = 1           
+    }
+    if(file_counter < 1){
+      file_counter = 1
+    }
+  }
+}else{
+  let string = window.prompt('MANDELBROWSER CODE') || ''
+    string = replace_all(string,'%22','"')
+    string = replace_all(string,'"','')
+    string = replace_all(string,"'",'')
+    string = replace_all(string,"`",'')
+    string = replace_all(string,'%20',' ')
+    //LIST OF POINTS
+    points = get_point_array(string)
+    if(points.length == 0 ){
+      points = 
+        [
+            {pX:0,pY:0,zoom:0.4,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:5000},
+            {pX:-0.5693565694919585,pY:0.6258026753606527,zoom:2.500243900802678,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:10000},
+            {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#94f8ff',inmandelbrot_color:'#27196b',smooth_coloring:false,max_iteration:10000},
+            {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:5000},
+            {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:3000},
+            {pX:-0.4815798468789574,pY:0.6231206369409762,zoom:39.07202807223627,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+            {pX:-0.4700714292566631,pY:0.6225923237926176,zoom:244.22399969899936,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+            {pX:-0.47286473510817717,pY:0.6242238209323686,zoom:3816.5584441940478,hue:'#a0ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+            {pX:-0.47286473510817717,pY:0.6242238209323686,zoom:3816.5584441940478,hue:'#b094ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+            {pX:-0.4728824174579407,pY:0.6242424830733859,zoom:59642.45273151413,hue:'#94ffa6',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+            {pX:-0.4728784996493322,pY:0.6242404321795244,zoom:932049.7039007312,hue:'#ffdd94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:2000},
+            {pX:-0.4728785792502104,pY:0.6242403629605768,zoom:5825878.968556862,hue:'#ffe294',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:4000},
+            {pX:-0.47287873949064896,pY:0.6242402555424178,zoom:36415295.894872226,hue:'#ffe294',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:4000},
+            {pX:-0.47287874078399195,pY:0.6242402553298096,zoom:227617803.6426977,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:4000},
+            {pX:-0.4728787408787868,pY:0.6242402553559475,zoom:3557048658.658094,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:6000},
+            {pX:-0.4728787408823051,pY:0.6242402553544527,zoom:138974326020.80273,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:6000},
+            {pX:-0.4728787408822726,pY:0.624240255354295,zoom:868674277504.1874,hue:'#9bff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+            {pX:-0.4728787408822726,pY:0.624240255354295,zoom:868674277504.1874,hue:'#ffaf94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+            {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:2171791626353.6013,hue:'#ffaf94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+            {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:2171791626353.6013,hue:'#b494ff',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:8000},
+            {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:8000},
+            {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+            {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:15000},
+            {pX:-0.47287874088227777,pY:0.6242402553543369,zoom:3234780078181.737,hue:'#b494ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:20000}
+      ]
   }
     //OTHER ATRIBUTES
     if(string.indexOf(',')!=-1){
@@ -379,13 +479,12 @@ function max_file_counter_finder(point_list){
   return max_file_counter_aux + point_list.length
 }
 max_file_counter = max_file_counter_finder(points)
-atribute_points()
 if(points.length == 1){
   enable_zoom = false
-}else{
-  for(let i = 1; i < file_counter; i++){
-    update_values()
-  }
+}
+atribute_points()
+for(let i = 1; i < file_counter; i++){
+  update_values()
 }
 
 

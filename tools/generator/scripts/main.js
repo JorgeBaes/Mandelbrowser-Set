@@ -78,6 +78,13 @@ setTimeout(() => {
                 c.strokeRect(i, j, 1, 1)    
             }
         }
+        now_date = new Date()
+        image_time = (now_date.getTime() - past_date.getTime())/1000
+        document.querySelector('#image_time').innerText = `Image Generating Time : ${image_time}`
+        document.querySelector('#span_time_spent').innerText = `Time Spent : ${convert_time((now_date.getTime() - init_date)/1000)}`
+        set_values_to_span()
+        document.querySelector('#span_expected_time').innerText = `Expected Time : ${convert_time((now_date.getTime() - init_date)/1000)}`
+
         document.querySelector('#porcentage_process').style.width = `calc(14px + 25vw)`
         document.querySelector('#porcentage_span').innerText = `Process 100%`
         if(enable_center_point){

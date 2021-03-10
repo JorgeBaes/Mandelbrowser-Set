@@ -11,24 +11,24 @@ c.textBaseline = 'middle'
 c.textAlign = 'center'
 const cH = canvas.height
 const cW = canvas.width 
-let zoom = 1
+let zoom = 0.9
 let max_iteration = 1000
 document.querySelector('#max_iteration_range').value = max_iteration
 document.querySelector('#max_iter_show').innerText = `Max Iter ${max_iteration}`
 let zoom_factor = (1.008)**115
-let pX = 0
+let pX = -0.5
 let pY = 0
 let smooth_coloring = false
 document.querySelector('#smooth_coloring').checked = smooth_coloring
 let points = [
     {
-        pX: 0,
+        pX: -0.5,
         pY: 0,
-        zoom: 1,
+        zoom: 0.9,
         hue: "#94f8ff",
         inmandelbrot_color: "#27196b",
         smooth_coloring:smooth_coloring,
-        max_iteration:5000
+        max_iteration:1000
     }
 ]
 let fractal = 'Mandelbrot'

@@ -490,3 +490,452 @@ DRAKE:
     Range of images:
         From 1 to 4154
 ---------------------------
+
+---------------------------
+BURNING SHIP 2:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Burning Ship',
+            file_counter:1,
+            width:720,
+            height:720,
+            file_name:'mandelbrot_zoom',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:18,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:0,pY:0,zoom:0.4,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1},
+                {pX:0,pY:0.5,zoom:0.8,hue:'#e894ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:100},
+                {pX:-0.875,pY:1.4919354838709677,zoom:2.0000975579416833,hue:'#e894ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:200},
+                {pX:-0.8572589299072697,pY:1.5048380803020445,zoom:5.000487801605356,hue:'#e894ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:400},
+                {pX:-0.8966099295207903,pY:1.4403282448700434,zoom:12.50182930063506,hue:'#e894ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:600},
+                {pX:-0.9395949769356071,pY:1.4107079916370007,zoom:78.14405614447254,hue:'#b9ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:600},
+                {pX:-0.9402306839809399,pY:1.4104768173846576,zoom:488.44799939799873,hue:'#b9ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:800},
+                {pX:-0.9401782557697421,pY:1.4105445373844894,zoom:47711.634860765625,hue:'#e8ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:800},
+                {pX:-0.9401756156956838,pY:1.4105452242715966,zoom:1864099.4078014623,hue:'#e8ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.9401756021426478,pY:1.4105452397296965,zoom:182085360.97764435,hue:'#e8ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1520},
+                {pX:-0.9401756025501125,pY:1.4105452407941195,zoom:2845500126.3587823,hue:'#94ffd6',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1520},
+                {pX:-0.9401756024370901,pY:1.4105452409226102,zoom:277948652041.60547,hue:'#ff9494',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2330},
+                {pX:-0.9401756024331568,pY:1.4105452409206678,zoom:4343583252707.2026,hue:'#ff9494',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:3040},
+                {pX:-0.9401756024332025,pY:1.4105452409206642,zoom:169704328781365.84,hue:'#ff9494',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:3040}
+            ]
+        }
+    Range of images:
+        From 1 to 4227
+---------------------------
+
+---------------------------
+SPIRAL ASSEMBLY 1:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,width:1080,
+            height:1080,
+            file_name:'mandelbrot_zoom',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:0.354394189481638,pY:0.10543000636302582,zoom:149106.1318287853,hue:'#a6ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:100},
+                {pX:0.354394189481638,pY:0.10543000636302582,zoom:149106.1318287853,hue:'#a6ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:500},
+                {pX:0.354394189481638,pY:0.10543000636302582,zoom:149106.1318287853,hue:'#a6ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:1000},
+                {pX:0.354394189481638,pY:0.10543000636302582,zoom:149106.1318287853,hue:'#a6ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:7040},
+                {pX:0.354394189481638,pY:0.10543000636302582,zoom:149106.1318287853,hue:'#a6ff94',inmandelbrot_color:'#27196b',smooth_coloring:true,max_iteration:100000}
+            ]
+        }
+    Range of images:
+        From 1 to 400
+---------------------------
+
+---------------------------
+SPIRAL ASSEMBLY 2:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            height:1080,
+            file_name:'m',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:0.3543828833929933,pY:0.10542927945230998,zoom:932004.2416930011,hue:'#a6ff94',inmandelbrot_color:'#99ffa5',smooth_coloring:true,max_iteration:400},
+                {pX:0.3543828833929933,pY:0.10542927945230998,zoom:932004.2416930011,hue:'#a6ff94',inmandelbrot_color:'#99ffa5',smooth_coloring:true,max_iteration:700},
+                {pX:0.3543828833929933,pY:0.10542927945230998,zoom:932004.2416930011,hue:'#a6ff94',inmandelbrot_color:'#99ffa5',smooth_coloring:true,max_iteration:1000},
+                {pX:0.3543828833929933,pY:0.10542927945230998,zoom:932004.2416930011,hue:'#c9ff94',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:100000},
+                {pX:0.354382796768494,pY:0.10542933381867539,zoom:5825594.802037877,hue:'#a6ff94',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:100000}
+            ]
+        }
+    Range of images:
+        From 1 to 630
+---------------------------
+
+---------------------------
+SPIRAL ASSEMBLY 3:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            height:1080,
+            file_name:'m',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:-1.563631713822052,pY:0.000016119951061603043,zoom:91038239.73718055,hue:'#f3ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:400},
+                {pX:-1.563631713822052,pY:0.000016119951061603043,zoom:91038239.73718055,hue:'#f3ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1000},
+                {pX:-1.563631713822052,pY:0.000016119951061603043,zoom:91038239.73718055,hue:'#f3ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2380},
+                {pX:-1.563631713822052,pY:0.000016119951061603043,zoom:91038239.73718055,hue:'#f3ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+                {pX:-1.563631713822052,pY:0.000016119951061603043,zoom:91038239.73718055,hue:'#f3ff94',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:100000}
+            ]
+        }
+    Range of images:
+        From 1 to 630
+---------------------------
+
+---------------------------
+SPIRAL ASSEMBLY 4:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            height:1080,
+            file_name:'m',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:-0.7805646225596958,pY:0.13397755311868123,zoom:5825594.802037877,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:210},
+                {pX:-0.7805646225596958,pY:0.13397755311868123,zoom:5825594.802037877,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:490},
+                {pX:-0.7805646225596958,pY:0.13397755311868123,zoom:5825594.802037877,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.7805646225596958,pY:0.13397755311868123,zoom:5825594.802037877,hue:'#a6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+                {pX:-0.7805646225596958,pY:0.13397755311868123,zoom:5825594.802037877,hue:'#dd94ff',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:8000}
+            ]
+        }
+    Range of images:
+        From 1 to 630
+---------------------------
+
+SPIRAL ASSEMBLY 5:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            height:1080,
+            file_name:'m',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:-0.4142217754108776,pY:0.5744752111344844,zoom:149106.1318287853,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:550},
+                {pX:-0.4142217754108776,pY:0.5744752111344844,zoom:149106.1318287853,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.4142217754108776,pY:0.5744752111344844,zoom:149106.1318287853,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+                {pX:-0.4142217754108776,pY:0.5744752111344844,zoom:149106.1318287853,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1000000}
+            ]
+        }
+    Range of images:
+        From 1 to 630
+---------------------------
+
+---------------------------
+Misiurewicz:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:100,
+            height:508,
+            file_name:'misiurewicz',
+            enable_zoom:true,
+            enable_download:false,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:-0.5,pY:0,zoom:0.8,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:false,max_iteration:1000},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:10,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:false,max_iteration:8000},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:6250609752006.694,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:false,max_iteration:10000}
+            ]
+        }
+    Range of images:
+        From 1 to 3726
+---------------------------
+
+---------------------------
+Misiurewicz 2:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            height:1080,
+            file_name:'misiurewicz2',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:-0.5,pY:0,zoom:0.8,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:150},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:10,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:500},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:1000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1000},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:100000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:2090},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:10000000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:3600},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:1000000000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:4770},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:100000000000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:5270},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:1000000000000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:5270},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:1000000000000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:5300},
+                {pX:-0.7756837699987997,pY:0.13646737000097153,zoom:100000000000000,hue:'#ff9494',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:7240}
+            ]
+        }
+    Range of images:
+        From 1 to 3726
+---------------------------
+
+---------------------------
+Misiurewicz 2:
+    MANDELBROWSER CODE:
+        {
+            fractal:'Julia Set',
+            file_counter:1,
+            width:1080,
+            height:1080,
+            file_name:'m',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:27,
+            cX:0.5,
+            cY:0.4,
+            list_of_points:[
+                {pX:0,pY:0,zoom:0.7,hue:'#b0ff94',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:1},
+                {pX:0,pY:0,zoom:0.7,hue:'#ff9494',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:100},
+                {pX:0,pY:0,zoom:0.7,hue:'#fd94ff',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:200},
+                {pX:0.16129032258064502,pY:0.5806451612903225,zoom:1.7500853631989726,hue:'#a0ff94',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:310},
+                {pX:0.16740991886481998,pY:0.6005220695208134,zoom:68.37604912641348,hue:'#ffa994',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:400},
+                {pX:0.16705702927544439,pY:0.6006654896524697,zoom:1068.5321180378228,hue:'#ff94f3',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:580},
+                {pX:0.16707212384488762,pY:0.6007077544469107,zoom:2671.4605998371294,hue:'#b0ff94',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:580},
+                {pX:0.1670602902089956,pY:0.6007087199339314,zoom:16698.257677443617,hue:'#b0ff94',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:10},
+                {pX:0.16706086975564902,pY:0.6007083335694957,zoom:41747.680503169926,hue:'#b0ff94',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:170},
+                {pX:0.16705971071887882,pY:0.6007077154165515,zoom:104374.29228014973,hue:'#b0ff94',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:870},
+                {pX:0.16705928076257684,pY:0.6007075230430388,zoom:4077916.3614265155,hue:'#94ffc8',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:1200},
+                {pX:0.16705927208973795,pY:0.6007075230937391,zoom:59393617913921.64,hue:'#ff9494',inmandelbrot_color:'#e0ffb3',smooth_coloring:true,max_iteration:2000}
+            ]
+        }
+    Range of images:
+        From 1 to 3726
+---------------------------
+
+---------------------------
+X AXIS 4 SPIRAL:
+    MANDELBROWSER CODE:
+       {
+            fractal:'Mandelbrot',
+            file_counter:1,
+            width:1080,
+            height:607,
+            file_name:'m',
+            enable_zoom:true,
+            enable_download:true,
+            zoom_orientation:'center',
+            enable_point:false,
+            point_color:'#ffffff',
+            point_size:2,
+            enable_text:false,
+            text_color:'#002688',
+            text_size:18,
+            cX:-0.47287874088227777,
+            cY:0.6242402553543369,
+            list_of_points:[
+                {pX:-0.5,pY:0,zoom:0.7,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1},
+                {pX:-0.5,pY:0,zoom:1,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:100},
+                {pX:-1.7498999973431788,pY:0,zoom:10,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:200},
+                {pX:-1.7498999973431788,pY:0,zoom:1000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:300},
+                {pX:-1.7498999973431788,pY:0,zoom:10000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:300},
+                {pX:-1.7498999973431788,pY:0,zoom:100000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:3000},
+                {pX:-1.7498999973431788,pY:0,zoom:10000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:5010},
+                {pX:-1.7498999973431788,pY:0,zoom:100000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:7080},
+                {pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:20000},
+                {pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:10000},
+                {pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:2000},
+                {pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1500},
+                {pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1000}
+                {pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:700}
+            ]
+        }
+    Range of images:
+        From 1 to 3726
+---------------------------
+
+
+---------------------------
+ZOOM RANDOM:
+    MANDELBROWSER CODE:
+       {
+           fractal:'Mandelbrot',
+           file_counter:1,
+           width:720,
+           height:720,
+           file_name:'m',
+           enable_zoom:true,
+           enable_download:true,
+           zoom_orientation:'center',
+           enable_point:false,
+           point_color:'#ffffff',
+           point_size:2,
+           enable_text:false,
+           text_color:'#002688',
+           text_size:18,
+           cX:-0.47287874088227777,
+           cY:0.6242402553543369,
+           list_of_points:[
+                {pX:-0.6031301334862822,pY:0.44080451736478266,zoom:81934415.76346251,hue:'#b6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2690},
+                {pX:-0.6031301334862822,pY:0.44080451736478266,zoom:81934415.76346251,hue:'#b6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:4000},
+                {pX:-0.6031301334862822,pY:0.44080451736478266,zoom:81934415.76346251,hue:'#b6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:10000},
+                {pX:-0.6031301334862822,pY:0.44080451736478266,zoom:81934415.76346251,hue:'#b6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:25000},
+                {pX:-0.6031301334862822,pY:0.44080451736478266,zoom:81934415.76346251,hue:'#b6ff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:290000}
+            ]
+        }
+       
+         Range of images:
+        From 1 to 3726
+---------------------------
+
+---------------------------
+ZOOM RANDOM:
+    MANDELBROWSER CODE:
+       {
+           fractal:'Mandelbrot',
+           file_counter:1,
+           width:720,
+           height:720,
+           file_name:'m',
+           enable_zoom:true,
+           enable_download:true,
+           zoom_orientation:'center',
+           enable_point:false,
+           point_color:'#ffffff',
+           point_size:2,
+           enable_text:false,
+           text_color:'#002688',
+           text_size:18,
+           cX:-0.47287874088227777,
+           cY:0.6242402553543369,
+           list_of_points:[
+               {pX:-1.710989811402655,pY:0.00001286487475377035,zoom:5825594.802037877,hue:'#94ffa0',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:50},
+               {pX:-1.710989811402655,pY:0.00001286487475377035,zoom:5825594.802037877,hue:'#94ffa0',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:100},
+               {pX:-1.710989811402655,pY:0.00001286487475377035,zoom:5825594.802037877,hue:'#94ffa0',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:210},
+               {pX:-1.710989811402655,pY:0.00001286487475377035,zoom:5825594.802037877,hue:'#94ffa0',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:390},
+               {pX:-1.710989811402655,pY:0.00001286487475377035,zoom:5825594.802037877,hue:'#94ffa0',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2000},
+               {pX:-1.710989811402655,pY:0.00001286487475377035,zoom:5825594.802037877,hue:'#94ffa0',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:3400}
+            ]
+        }
+       
+         Range of images:
+        From 1 to 3726
+---------------------------
+
+
+---------------------------
+ZOOM RANDOM:
+    MANDELBROWSER CODE:
+       {
+           fractal:'Mandelbrot',
+           file_counter:1,
+           width:720,
+           height:720,
+           file_name:'m',
+           enable_zoom:true,
+           enable_download:true,
+           zoom_orientation:'center',
+           enable_point:false,
+           point_color:'#ffffff',
+           point_size:2,
+           enable_text:false,
+           text_color:'#002688',
+           text_size:18,
+           cX:-0.47287874088227777,
+           cY:0.6242402553543369,
+           list_of_points:[
+               {pX:-0.07638221594619035,pY:-0.6629290606128799,zoom:134195.5186459068,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:800},
+               {pX:-0.07638221594619035,pY:-0.6629290606128799,zoom:134195.5186459068,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:1600},
+               {pX:-0.07638221594619035,pY:-0.6629290606128799,zoom:134195.5186459068,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:2500},
+               {pX:-0.07638221594619035,pY:-0.6629290606128799,zoom:134195.5186459068,hue:'#9bff94',inmandelbrot_color:'#ffffff',smooth_coloring:true,max_iteration:500000}
+            ]
+        }
+       
+         Range of images:
+        From 1 to 3726
+---------------------------
+
+file:///E:/programacao/progamacoesEmJavascript/Mandelbrowser-Set-2.1/tools/generator/mandelbrowser_generator.html#{fractal:'Mandelbrot',file_counter:774,width:3840,height:2160,file_name:'m',enable_zoom:true,enable_download:true,zoom_orientation:'center',enable_point:false,point_color:'#ffffff',point_size:2,enable_text:false,text_color:'#002688',text_size:18,cX:-0.47287874088227777,cY:0.6242402553543369,list_of_points:[{pX:-0.5,pY:0,zoom:0.7,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1},{pX:-0.5,pY:0,zoom:1,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:100},{pX:-1.7498999973431788,pY:0,zoom:10,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:200},{pX:-1.7498999973431788,pY:0,zoom:1000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:300},{pX:-1.7498999973431788,pY:0,zoom:10000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:300},{pX:-1.7498999973431788,pY:0,zoom:100000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:3000},{pX:-1.7498999973431788,pY:0,zoom:10000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:5010},{pX:-1.7498999973431788,pY:0,zoom:100000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:7080},{pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:20000},{pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:10000},{pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:2000},{pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1500},{pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:1000},{pX:-1.7498999973431788,pY:0,zoom:700000000000,hue:'#94ffd6',inmandelbrot_color:'#000000',smooth_coloring:true,max_iteration:700}]}
+

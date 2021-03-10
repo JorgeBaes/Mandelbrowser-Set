@@ -300,8 +300,36 @@ function edit_point(index){
     document.querySelector('#color_offset_editor').value = points[index].hue
     document.querySelector('#smooth_coloring_editor').checked = points[index].smooth_coloring 
     document.querySelector('#max_iter_show_editor').innerText = `Max Iter ${points[index].max_iteration}`
-    document.querySelector('#max_iteration_range_editor').value = points[index].max_iteration
     document.querySelector('#editor_div').style.display = 'block'
+    const current_max_value = points[index].max_iteration
+    if (current_max_value < 100){
+        document.querySelector('#max_iteration_range_editor').max = 100
+        document.querySelector('#max_iteration_range_editor').min = 1
+        document.querySelector('#max_iteration_range_editor').step = 1       
+    }else if (current_max_value < 1000){
+        document.querySelector('#max_iteration_range_editor').max = 1000
+        document.querySelector('#max_iteration_range_editor').min = 10
+        document.querySelector('#max_iteration_range_editor').step = 10      
+    }else if (current_max_value < 10000){
+        document.querySelector('#max_iteration_range_editor').max = 10000
+        document.querySelector('#max_iteration_range_editor').min = 1000
+        document.querySelector('#max_iteration_range_editor').step = 10
+    }else if(current_max_value < 100000){
+        document.querySelector('#max_iteration_range_editor').max = 100000
+        document.querySelector('#max_iteration_range_editor').min = 1000
+        document.querySelector('#max_iteration_range_editor').step = 100
+    }else if(current_max_value < 1000000){
+        document.querySelector('#max_iteration_range_editor').max = 1000000
+        document.querySelector('#max_iteration_range_editor').min = 1000
+        document.querySelector('#max_iteration_range_editor').step = 100
+    }else if(current_max_value < 100000000){
+        document.querySelector('#max_iteration_range_editor').max = 100000000
+        document.querySelector('#max_iteration_range_editor').min = 10000
+        document.querySelector('#max_iteration_range_editor').step = 100000
+    }
+    document.querySelector('#max_iteration_range_editor').value = current_max_value
+    document.querySelector('#max_iter_show_editor').innerText = `Max Iter ${document.querySelector('#max_iteration_range_editor').value}`
+
 }
 function save_point(){
     pX = parseFloat(document.querySelector('#pX_value_editor').value)
@@ -331,7 +359,34 @@ function go_to_point(index){
     document.querySelector('#smooth_coloring').checked = points[index].smooth_coloring
     document.querySelector('#max_iteration_range').value = points[index].max_iteration
     document.querySelector('#max_iter_show').innerText = `Max Iter ${document.querySelector('#max_iteration_range').value}`
+    const current_max_value = points[index].max_iteration
+    if (current_max_value < 100){
+        document.querySelector('#max_iteration_range').max = 100
+        document.querySelector('#max_iteration_range').min = 1
+        document.querySelector('#max_iteration_range').step = 1       
+    }else if (current_max_value < 1000){
+        document.querySelector('#max_iteration_range').max = 1000
+        document.querySelector('#max_iteration_range').min = 10
+        document.querySelector('#max_iteration_range').step = 10      
+    }else if (current_max_value < 10000){
+        document.querySelector('#max_iteration_range').max = 10000
+        document.querySelector('#max_iteration_range').min = 1000
+        document.querySelector('#max_iteration_range').step = 10
+    }else if(current_max_value < 100000){
+        document.querySelector('#max_iteration_range').max = 100000
+        document.querySelector('#max_iteration_range').min = 1000
+        document.querySelector('#max_iteration_range').step = 100
+    }else if(current_max_value < 1000000){
+        document.querySelector('#max_iteration_range').max = 1000000
+        document.querySelector('#max_iteration_range').min = 1000
+        document.querySelector('#max_iteration_range').step = 100
+    }else if(current_max_value < 100000000){
+        document.querySelector('#max_iteration_range').max = 100000000
+        document.querySelector('#max_iteration_range').min = 10000
+        document.querySelector('#max_iteration_range').step = 100000
+    }
     max_iteration = points[index].max_iteration
+    document.querySelector('#max_iteration_range').value = max_iteration
     update_XYZ()
 }
 function open_generator_config_window(){
@@ -497,7 +552,7 @@ function check_code(){
         document.querySelector('#julia_pY_text').style.display = 'none'
         document.querySelector('#julia_pX_text').style.display = 'none'
     }
-    update_XYZ()
+    // update_XYZ()
 }
 function change_smooth_color_value(){
     smooth_coloring = document.querySelector('#smooth_coloring').checked
@@ -545,48 +600,75 @@ function change_max_iter(){
 function change_max_iter_editor(){
     document.querySelector('#max_iter_show_editor').innerText = `Max Iter ${document.querySelector('#max_iteration_range_editor').value}`
 }
+
 function change_range_range(){
     const current_max_value = document.querySelector('#max_iteration_range').max
-    if(current_max_value == 10000){
+    if (current_max_value == 100000000){
+        document.querySelector('#max_iteration_range').max = 100
+        document.querySelector('#max_iteration_range').min = 1
+        document.querySelector('#max_iteration_range').step = 1
+        document.querySelector('#max_iteration_range').value = 50        
+    }else if(current_max_value == 1000000){
+        document.querySelector('#max_iteration_range').max = 100000000
+        document.querySelector('#max_iteration_range').min = 1000000
+        document.querySelector('#max_iteration_range').step = 1000000
+        document.querySelector('#max_iteration_range').value = 5000000 
+    }else if(current_max_value == 100000){
+        document.querySelector('#max_iteration_range').max = 1000000
+        document.querySelector('#max_iteration_range').min = 10000
+        document.querySelector('#max_iteration_range').step = 10000
+        document.querySelector('#max_iteration_range').value = 50000 
+    }else if(current_max_value == 10000){
         document.querySelector('#max_iteration_range').max = 100000
         document.querySelector('#max_iteration_range').min = 1000
         document.querySelector('#max_iteration_range').step = 1000
-    }else if(current_max_value == 100000){
-        document.querySelector('#max_iteration_range').max = 1000000
-        document.querySelector('#max_iteration_range').min = 1000
-        document.querySelector('#max_iteration_range').step = 1000
-    }else if (current_max_value == 1000000){
-        document.querySelector('#max_iteration_range').max = 1000
-        document.querySelector('#max_iteration_range').min = 50
-        document.querySelector('#max_iteration_range').step = 50
-        document.querySelector('#max_iteration_range').value = 100        
+        document.querySelector('#max_iteration_range').value = 5000 
     }else if (current_max_value == 1000){
         document.querySelector('#max_iteration_range').max = 10000
-        document.querySelector('#max_iteration_range').min = 1000
-        document.querySelector('#max_iteration_range').step = 1000
+        document.querySelector('#max_iteration_range').min = 100
+        document.querySelector('#max_iteration_range').step = 100
+        document.querySelector('#max_iteration_range').value = 500 
+    }else if (current_max_value == 100){
+        document.querySelector('#max_iteration_range').max = 1000
+        document.querySelector('#max_iteration_range').min = 10
+        document.querySelector('#max_iteration_range').step = 10
+        document.querySelector('#max_iteration_range').value = 100        
     }
     max_iteration = document.querySelector('#max_iteration_range').value
     document.querySelector('#max_iter_show').innerText = `Max Iter ${document.querySelector('#max_iteration_range').value}`
 }
 function change_range_range_editor(){
     const current_max_value = document.querySelector('#max_iteration_range_editor').max
-    if(current_max_value == 10000){
+    if (current_max_value == 100000000){
+        document.querySelector('#max_iteration_range_editor').max = 100
+        document.querySelector('#max_iteration_range_editor').min = 1
+        document.querySelector('#max_iteration_range_editor').step = 1
+        document.querySelector('#max_iteration_range_editor').value = 50        
+    }else if(current_max_value == 1000000){
+        document.querySelector('#max_iteration_range_editor').max = 100000000
+        document.querySelector('#max_iteration_range_editor').min = 1000000
+        document.querySelector('#max_iteration_range_editor').step = 1000000
+        document.querySelector('#max_iteration_range_editor').value = 5000000 
+    }else if(current_max_value == 100000){
+        document.querySelector('#max_iteration_range_editor').max = 1000000
+        document.querySelector('#max_iteration_range_editor').min = 10000
+        document.querySelector('#max_iteration_range_editor').step = 10000
+        document.querySelector('#max_iteration_range_editor').value = 50000 
+    }else if(current_max_value == 10000){
         document.querySelector('#max_iteration_range_editor').max = 100000
         document.querySelector('#max_iteration_range_editor').min = 1000
         document.querySelector('#max_iteration_range_editor').step = 1000
-    }else if(current_max_value == 100000){
-        document.querySelector('#max_iteration_range_editor').max = 1000000
-        document.querySelector('#max_iteration_range_editor').min = 1000
-        document.querySelector('#max_iteration_range_editor').step = 1000
-    }else if (current_max_value == 1000000){
-        document.querySelector('#max_iteration_range_editor').max = 1000
-        document.querySelector('#max_iteration_range_editor').min = 50
-        document.querySelector('#max_iteration_range_editor').step = 50
-        document.querySelector('#max_iteration_range_editor').value = 0
+        document.querySelector('#max_iteration_range_editor').value = 5000 
     }else if (current_max_value == 1000){
         document.querySelector('#max_iteration_range_editor').max = 10000
-        document.querySelector('#max_iteration_range_editor').min = 1000
-        document.querySelector('#max_iteration_range_editor').step = 1000
+        document.querySelector('#max_iteration_range_editor').min = 100
+        document.querySelector('#max_iteration_range_editor').step = 100
+        document.querySelector('#max_iteration_range_editor').value = 500 
+    }else if (current_max_value == 100){
+        document.querySelector('#max_iteration_range_editor').max = 1000
+        document.querySelector('#max_iteration_range_editor').min = 10
+        document.querySelector('#max_iteration_range_editor').step = 10
+        document.querySelector('#max_iteration_range_editor').value = 100        
     }
     document.querySelector('#max_iter_show_editor').innerText = `Max Iter ${document.querySelector('#max_iteration_range_editor').value}`
 }

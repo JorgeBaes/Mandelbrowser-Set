@@ -361,7 +361,7 @@
                     </div>
                     <div>  
                         <span class="sections_titles" id="max_iter_show" style="cursor: pointer;" onclick="change_range_range()">Max Iter </span> <br>
-                        <input type="range" class="slider" min="1000" max="10000" step="1000" name="" oninput="change_max_iter()" id="max_iteration_range">
+                        <input type="range" class="slider" min="1000" max="10000" step="10" name="" oninput="change_max_iter()" id="max_iteration_range">
                         </div>
                 </div>              
                 <div style="display: flex; justify-content: space-evenly;
@@ -452,7 +452,7 @@
             </div>
         </div>
         
-        <input type="button" title="Add point to point list" class="pointer" style="width: fit-content;margin-top: 20px; padding: 5px 0px;" onclick="add_point()" value=" ADD POINT ">
+        <input type="button" title="Add point to point list" class="pointer" style="width: fit-content;margin: 20px 0px; padding: 5px 0px;" onclick="add_point()" value=" ADD POINT ">
         <br>
         <canvas style="cursor:zoom-in;"></canvas><br>
         <br>
@@ -473,7 +473,7 @@
             <input type="checkbox" class="check_box" name="Smooth Coloring" id="smooth_coloring_editor">
             <br>
             <span class="sections_titles" id="max_iter_show_editor" style="cursor: pointer;" onclick="change_range_range_editor()">Max Iter </span> <br>
-            <input type="range" class="slider" min="1000" max="10000" step="1000" name="" oninput="change_max_iter_editor()" id="max_iteration_range_editor">
+            <input type="range" class="slider" min="1000" max="10000" step="10" name="" oninput="change_max_iter_editor()" id="max_iteration_range_editor">
             <br>          
             <input type="button" title="Apply configuration" id="apply_button" class="pointer" onclick="update_XYZ_editor()" value=" APPLY "><br>
             <input type="button" title="OK" id="save_point_button_editor" class="pointer" onclick="save_point()" value=" OK ">
